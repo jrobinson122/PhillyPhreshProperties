@@ -38,6 +38,15 @@
 
                 <div class="row gx-5 my-1">
                     <div class="col-md-6">
+                        <asp:CheckBox ID="chkSaveLoginInfo" CssClass="" Text="Save Login" runat="server"></asp:CheckBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Button ID="btnForgot" CssClass="btn btn-link" Text="Forgot Password" runat="server" OnClick="btnForgot_Click"></asp:Button>
+                    </div>
+                </div><%--end check/forgot div--%>
+
+                <div class="row gx-5 my-1">
+                    <div class="col-md-6">
                         <asp:Button ID="btnRegister" runat="server" Text="Register"  CssClass="btn btn-outline-success align-content-center" OnClick="btnRegister_Click"/>
                     </div>
                     <div class="col-md-6">
