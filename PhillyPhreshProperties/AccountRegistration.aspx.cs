@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PhillyPhreshPropertiesLibrary;
 
 namespace PhillyPhreshProperties
 {
     public partial class AccountRegistration : System.Web.UI.Page
     {
+        StoredProcedures procedures = new StoredProcedures();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -44,6 +46,8 @@ namespace PhillyPhreshProperties
             {
                 email = txtRegisterEmail.Text;
             }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterPassword.Text))
             {
                 lblMessage.Text += "Please enter an password. </br>";
@@ -53,6 +57,8 @@ namespace PhillyPhreshProperties
             {
                 password = txtRegisterPassword.Text;
             }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterFirstName.Text))
             {
                 lblMessage.Text += "Please enter your first name. </br>";
@@ -62,6 +68,12 @@ namespace PhillyPhreshProperties
             {
                 lblMessage.Text += "First name must only be letters. </br>";
             }
+            else
+            {
+                firstname = txtRegisterFirstName.Text;
+            }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterLastName.Text))
             {
                 lblMessage.Text += "Please enter your last name. </br>";
@@ -71,25 +83,128 @@ namespace PhillyPhreshProperties
             {
                 lblMessage.Text += "Last name must only be letters. </br>";
             }
+            else
+            {
+                lastname = txtRegisterLastName.Text;
+            }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterAddress.Text))
             {
                 lblMessage.Text += "Please enter your address. </br>";
                 flag = false;
             }
+            else
+            {
+                address = txtRegisterAddress.Text;
+            }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterCity.Text))
             {
                 lblMessage.Text += "Please enter your city. </br>";
                 flag = false;
             }
+            else
+            {
+                city = txtRegisterCity.Text;
+            }
+
+
             if (string.IsNullOrWhiteSpace(txtRegisterState.Text))
             {
                 lblMessage.Text += "Please enter your last name. </br>";
                 flag = false;
             }
-            if (string.IsNullOrWhiteSpace(txtRegisterLastName.Text))
+            else if(txtRegisterState.Text.Length != 2)
+            {
+                lblMessage.Text += "Please enter a valid state. </br";
+            }
+            else
+            {
+                state = txtRegisterState.Text;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtRegisterZipCode.Text))
+            {
+                lblMessage.Text += "Please enter your zip code. </br>";
+                flag = false;
+            }
+            else if(txtRegisterZipCode.Text.Length != 5)
+            {
+                lblMessage.Text += "Zip code must be 5 digits long. </br>";
+                flag = false;
+            }
+            else if(txtRegisterZipCode.Text.All(char.IsDigit) == false)
+            {
+                lblMessage.Text += "Zip code must only be integers. </br>";
+                flag = false;
+            }
+            else
+            {
+                zipcode = txtRegisterZipCode.Text;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtRegisterPhoneNumber.Text))
             {
                 lblMessage.Text += "Please enter your last name. </br>";
                 flag = false;
+            }
+            else if (txtRegisterPhoneNumber.Text.Length != 10)
+            {
+                lblMessage.Text += "Phone number must be 10 digits. </br>";
+                flag = false;
+            }
+            else if (txtRegisterPhoneNumber.Text.All(Char.IsDigit) == false)
+            {
+                lblMessage.Text += "Phone number must only be digits </br>";
+                flag = false;
+            }
+            else
+            {
+                phoneNumber = txtRegisterPhoneNumber.Text;
+            }
+
+            if (String.IsNullOrWhiteSpace(txtSecurityAnswer1.Text))
+            {
+                lblMessage.Text += "Please fill out the first security question. </br>";
+                flag = false;
+            }
+            else
+            {
+                answer1 = txtSecurityAnswer1.Text;
+            }
+            if (String.IsNullOrWhiteSpace(txtSecurityAnswer2.Text))
+            {
+                lblMessage.Text += "Please fill out the second security question. </br>";
+                flag = false;
+            }
+            else
+            {
+                answer2 = txtSecurityAnswer2.Text;
+            }
+            if (String.IsNullOrWhiteSpace(txtSecurityAnswer3.Text))
+            {
+                lblMessage.Text += "Please fill out the third security question. </br>";
+                flag = false;
+            }
+            else
+            {
+                answer3 = txtSecurityAnswer3.Text;
+            }
+
+            if(flag == true)
+            {
+                if(procedures.AddUser(email,password,firstname,lastname,address,city,state,zipcode,phoneNumber, securityQuestion1, answer1, securityQuestion2, answer2, securityQuestion3, answer3) == true)
+                {
+                    lblMessage.Text += "New user added to Philly Phresh Properties!";
+                }
+                else
+                {
+                    lblMessage.Text += "There was an error adding user";
+                }
             }
         }
     }

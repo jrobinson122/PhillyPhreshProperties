@@ -122,6 +122,20 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhillyPhreshPropertiesAPI\PhillyPhreshPropertiesAPI.csproj">
+      <Project>{1dab52bb-0db2-449d-9dd3-a3e159c3ee66}</Project>
+      <Name>PhillyPhreshPropertiesAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhillyPhreshPropertiesLibrary\PhillyPhreshPropertiesLibrary.csproj">
+      <Project>{3becf0ca-325c-452d-bf53-2dd29ce58192}</Project>
+      <Name>PhillyPhreshPropertiesLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{93997ecf-51ad-4259-94a2-90e9f5266771}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
