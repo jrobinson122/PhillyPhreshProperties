@@ -33,7 +33,6 @@
             <label>Number of Bathrooms:</label>
             <asp:TextBox ID="txtNumBathrooms" runat="server"></asp:TextBox>
             <br />
-            ll
            
             <label>Amenities:</label>
             <asp:CheckBoxList ID="chkAmenities" runat="server">
@@ -63,6 +62,17 @@
                 <asp:ListItem Text="None" Value="None"></asp:ListItem>
                 <asp:ListItem Text="2 Car" Value="2Car"></asp:ListItem>
             </asp:DropDownList>
+            <br />
+             <label>Home Description:</label>
+            <asp:TextBox ID="descriptionTxtBox" runat="server"></asp:TextBox>
+            <br />
+             <br />
+             <label>Asking Price:</label>
+            <asp:TextBox ID="askingPriceTxtBox" runat="server"></asp:TextBox>
+            <br />
+              <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Black" OnClick="btnSubmit_Click"/>
+            <br />
+            <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>
     </form>
 </body>

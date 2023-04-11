@@ -8,7 +8,7 @@ namespace PhillyPhreshPropertiesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class PhillyPhreshPropertiesController : ControllerBase
     {
         // GET api/values
         [HttpGet]

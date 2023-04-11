@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AccountRegistration.aspx" />
     <Content Include="AddAHomeProfile.aspx" />
+    <Content Include="HomeSeller-AgentProfile.aspx" />
     <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PPPStyling.css" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="AddAHomeProfile.aspx.designer.cs">
       <DependentUpon>AddAHomeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeSeller-AgentProfile.aspx.cs">
+      <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
+      <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
