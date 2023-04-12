@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace PhillyPhreshPropertiesAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    [Produces("application/json")]
+    [Route("api/Properties")]
+    public class PhillyPhreshPropertiesController : Controller
     {
         // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet("CalculateHomeSize/{x}/{y}/{z}")]
+        public double CalculateHomeSize(double x, double y, double z)
         {
-            return new string[] { "value1", "value2" };
+            double sum = x + y;
+            double totalSize = sum * z;
+            return totalSize;
         }
 
         // GET api/values/5

@@ -15,7 +15,7 @@
     <AssemblyName>PhillyPhreshProperties</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -69,10 +69,11 @@
   <ItemGroup>
     <Content Include="AccountRegistration.aspx" />
     <Content Include="AddAHomeProfile.aspx" />
+    <Content Include="HomeSeller-AgentProfile.aspx" />
     <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PPPStyling.css" />
-    <Content Include="SearchForHome.aspx" />
+    <Content Include="SearchForHomes.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,13 @@
     <Compile Include="AddAHomeProfile.aspx.designer.cs">
       <DependentUpon>AddAHomeProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HomeSeller-AgentProfile.aspx.cs">
+      <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
+      <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,12 +113,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchForHome.aspx.cs">
-      <DependentUpon>SearchForHome.aspx</DependentUpon>
+    <Compile Include="SearchForHomes.aspx.cs">
+      <DependentUpon>SearchForHomes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SearchForHome.aspx.designer.cs">
-      <DependentUpon>SearchForHome.aspx</DependentUpon>
+    <Compile Include="SearchForHomes.aspx.designer.cs">
+      <DependentUpon>SearchForHomes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -88,7 +88,6 @@
             </div><%--end searchBar div--%>
 
 
-
         </div>
     </form>
 </body>
