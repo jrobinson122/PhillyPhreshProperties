@@ -13,5 +13,11 @@ namespace PhillyPhreshProperties
         {
 
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            //need to clear whatever varibles are holding unique user data first
+            Response.Redirect("Login.aspx");
+        }
     }
 }

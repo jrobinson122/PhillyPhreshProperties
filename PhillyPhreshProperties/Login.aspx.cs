@@ -20,6 +20,7 @@ namespace PhillyPhreshProperties
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountRegistration.aspx");
+
         }//end btnRegister_Click()
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -29,11 +30,19 @@ namespace PhillyPhreshProperties
             if (!lblError.Visible)
             {
                 user.GetUser();
-                Response.Redirect("LandingPage.aspx");
+
+                if(user.GetUser())
+                {                    
+                    if (chkSaveLoginInfo.Checked)
+                    {
+                        Response.Cookies["authUserCookie"]["email"] = user.Email;
+                        Response.Cookies["authUserCookie"]["password"] = user.Password;
+                    }
+                    Response.Redirect("LandingPage.aspx");
+                }
+                
             }
 
-            //need a check for if chkSaveLoginInfo is checked
-            //
         }//end btnLogin_Click()
 
         protected void btnForgot_Click(object sender, EventArgs e)

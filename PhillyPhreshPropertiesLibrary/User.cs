@@ -82,6 +82,7 @@ namespace PhillyPhreshPropertiesLibrary
                 firstname= dataset.Tables[0].Rows[0]["FirstName"].ToString();
                 lastname= dataset.Tables[0].Rows[0]["LastName"].ToString();
                 //wait before finishing
+                //how are we sending user data to each page
 
                 objCommand.Parameters.Clear();
 
