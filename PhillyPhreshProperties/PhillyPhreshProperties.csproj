@@ -70,7 +70,6 @@
     <Content Include="AccountRegistration.aspx" />
     <Content Include="AddAHomeProfile.aspx" />
     <Content Include="HomeSeller-AgentProfile.aspx" />
-    <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PPPStyling.css" />
     <Content Include="SearchForHomes.aspx" />
@@ -97,13 +96,6 @@
     </Compile>
     <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
       <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LandingPage.aspx.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LandingPage.aspx.designer.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
