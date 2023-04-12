@@ -12,7 +12,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div id="mainBodyDiv">
+            <h1 id="header"> <asp:Label ID="TitleLbl" runat="server" Text="Philly Phresh Properties"></asp:Label> </h1>
+           
         </div>
     </form>
 </body>

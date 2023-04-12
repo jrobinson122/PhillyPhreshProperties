@@ -34,12 +34,13 @@ namespace PhillyPhreshPropertiesLibrary
             objCommand.Parameters.AddWithValue("@theSecurityAnswer2", Answer2);
             objCommand.Parameters.AddWithValue("@theSecurityQuestion3", Question3);
             objCommand.Parameters.AddWithValue("@theSecurityAnswer3", Answer3);
-            if (objDB.DoUpdateUsingCmdObj(objCommand) > 0){
+            if (objDB.DoUpdateUsingCmdObj(objCommand) > 0)
+            {
                 return true;
             }
             return false;
         }
-        public Boolean AddHouse(string Address, string PropertyType, int HomeSize, int NumBeds, int NumBaths, string Amenities, string HeatingCooling, int YearBuilt, string Garage, string Description, decimal askingPrice)
+        public Boolean AddHouse(string Address, string PropertyType, string HomeSize, string NumBeds, string NumBaths, string Amenities, string HeatingCooling, string YearBuilt, string Garage, string Description, string askingPrice)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
@@ -67,5 +68,6 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }
     }
+}
 
 

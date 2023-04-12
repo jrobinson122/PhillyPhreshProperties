@@ -51,6 +51,10 @@ namespace PhillyPhreshProperties
                 lblMessage.Text += "Please enter the size of the home in sq ft. </br>";
                 flag = false;
             }
+            else if(txtHomeSize.Text.All(Char.IsDigit) == false)
+            {
+                lblMessage.Text += "Please enter the size in numbers. </br>";
+            }
             else
             {
                 homeSize = txtHomeSize.Text;
@@ -92,6 +96,10 @@ namespace PhillyPhreshProperties
                 lblMessage.Text += "Please enter the date house was built. </br>";
                 flag = false;
             }
+            else if(txtYearBuilt.Text.All(char.IsDigit) == false)
+            {
+                lblMessage.Text += "Please enter a numerical year";
+            }
             else
             {
                 yearBuilt = txtYearBuilt.Text;
@@ -114,6 +122,11 @@ namespace PhillyPhreshProperties
                 lblMessage.Text += "Please enter your last name. </br>";
                 flag = false;
             }
+            else if(askingPriceTxtBox.Text.All(Char.IsDigit) == false)
+            {
+                lblMessage.Text += "Please enter a number only. </br>";
+                
+            }
           else
             {
                 askingPrice = askingPriceTxtBox.Text;
@@ -121,13 +134,13 @@ namespace PhillyPhreshProperties
 
             if (flag == true)
             {
-                if (procedures.AddHouse()
+                if (procedures.AddHouse(address, propertyType, homeSize, bedrooms, bathrooms, amenities, heatingCooling, yearBuilt, garage, homeDescription, askingPrice))
                 {
-                    lblMessage.Text += "New user added to Philly Phresh Properties!";
+                    lblMessage.Text += "New house added to Philly Phresh Properties!";
                 }
                 else
                 {
-                    lblMessage.Text += "There was an error adding user";
+                    lblMessage.Text += "There was an error adding a home";
                 }
             }
         }

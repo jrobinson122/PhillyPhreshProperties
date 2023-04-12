@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhillyPhreshPropertiesAPI.Controllers
+namespace PhreshAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Properties")]
-    public class PhillyPhreshPropertiesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ValuesController : ControllerBase
     {
         // GET api/values
-        [HttpGet("CalculateHomeSize/{x}/{y}/{z}")]
-        public double CalculateHomeSize(double x, double y, double z)
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
         {
-            double sum = x + y;
-            double totalSize = sum * z;
-            return totalSize;
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
