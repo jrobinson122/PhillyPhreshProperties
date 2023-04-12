@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <title>Login</title>
 </head>
-<body class="bg-info">
+<body id="body" class="bg-info">
     <form id="form1" runat="server">
         <div id="login" class="d-block w-50 mx-auto p-2 bg-dark text-white rounded-3">
             <h2 class="text-center display-3">Welcome to Philly Phresh Properties!</h2>
@@ -57,6 +57,20 @@
                 <asp:Label ID="lblError" runat="server" Visible="false" CssClass="ms-3 text-warning"></asp:Label>
 
             </div><%--end logComponents div--%>
+
+            <div id="forgot" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+                <div class="row my-1">
+                    <div class="col-auto">
+                        <asp:Label ID="lblRecoveyQuestion" runat="server" Visible="false" CssClass="col-form-label-lg"></asp:Label>
+                        <asp:TextBox ID="txtRecoveryAnswer" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+                        <asp:Button ID="btnConfirmRecovery" runat="server" Visible="false" Text="Comfirm"  CssClass="btn btn-outline-info" OnClick="btnConfirmRecovery_Click"/>
+                    </div>
+                 </div>     
+                 <div class="row my-1">
+                    <asp:Label ID="lblRecoveredPassword" runat="server" Visible="false" CssClass="col-form-label-lg"></asp:Label>
+                </div>
+            </div><%--end forgot div--%>
+
         </div><%--end login div--%>
     </form>
 </body>
