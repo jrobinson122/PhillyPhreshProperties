@@ -27,68 +27,11 @@
                 </div>
             </nav>
 
-            <div id="searchBar" class="flex-column d-flex justify-content-center align-items-center mx-auto">
-                <div class="row gx-4 my-1">
-                    <div class="col-4">
-                        <asp:Label ID="lblLocation" runat="server" class=" col-form-label-lg">Location:</asp:Label>
-                        <asp:TextBox ID="txtKey" runat="server" CssClass=" form-control mb-2"></asp:TextBox>
-                        <asp:DropDownList ID="ddlLoction" runat="server" class="form-select">
-                            <asp:ListItem Text=""></asp:ListItem>
-                            <asp:ListItem Text="City" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="State" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Zipcode" Value="3"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
-                    <div class="col-md-4">
-                        <asp:Label ID="lblPriceRange" runat="server" class="col-form-label-lg">Price Range:</asp:Label>
-                        <asp:DropDownList ID="ddlPriceRange" runat="server" class="form-select">
-                            <asp:ListItem Text="All" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="$100k and under" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="$200k and under" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="$300k and under" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="$400k and under" Value="4"></asp:ListItem>
-                            <asp:ListItem Text="$500k and under" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="$1M and under" Value="6"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
-                    <div class="col-md-4">
-                        <asp:Button ID="btnFind" runat="server" CssClass="btn btn-outline-info mt-5" Text="Find" />
-                    </div>
-
-                </div>
-                <div class="row gx-4 my-1 ">
-                    <h4>Additional Find Filters</h4>
-
-                    <div class="col-md-4">
-                        <asp:Label ID="lblPropertyType" runat="server" class="col-form-label-lg">Property Type:</asp:Label>
-                        <asp:DropDownList ID="ddlPropertyType" runat="server" class="form-select">
-                            <asp:ListItem Text="All" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Single-Family" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Multi-Family" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Condo" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Townhouse" Value="4"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
-                    <div class="col-md-4">
-                        <asp:Label ID="Label1" runat="server" class="col-form-label-lg">Number of Bedrooms:</asp:Label>
-                        <asp:DropDownList ID="DropDownList2" runat="server" class="form-select">
-                            <asp:ListItem Text="All" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Single-Family" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Multi-Family" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Condo" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Townhouse" Value="4"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
-                </div>
-
-            </div><%--end searchBar div--%>
+            <%--create needed stored procedures to Jon db then transfer funtions to SP class--%>
+            <%--start doing bootstrap for all pages--%>
 
 
-        </div>
+        </div><%--end landing div--%>
     </form>
 </body>
 </html>

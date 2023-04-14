@@ -13,6 +13,12 @@ namespace PhillyPhreshPropertiesLibrary
 {
     public class StoredProcedures
     {
+        //database connection
+        DBConnect db = new DBConnect();
+        SqlCommand objCommand = new SqlCommand();
+        DataSet dataset = new DataSet();
+        User currentUser = new User();
+
         public Boolean AddUser(string Email, string Password, string FirstName, string LastName, string Address, string City, string State, string Zipcode, string PhoneNumber, string Question1, string Answer1, string Question2, string Answer2, string Question3, string Answer3)
         {
             DBConnect objDB = new DBConnect();
@@ -67,6 +73,77 @@ namespace PhillyPhreshPropertiesLibrary
                 return false;
             }
         }
+
+        public bool PasswordRecovery(string email)
+        {
+            /*
+             CREATE PROCEDURE [dbo].TP_GetQuestions
+	            @theEmail VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_User WHERE Email= @theEmail
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_ConfirmUser";
+                objCommand.Parameters.AddWithValue("theEmail", email);
+
+                dataset = db.GetDataSetUsingCmdObj(objCommand);
+                currentUser.SecurityQuestion1= dataset.Tables[0].Rows[0]["SecurityQuestion1"].ToString();
+                currentUser.Answer1 = dataset.Tables[0].Rows[0]["Answer1"].ToString();
+                currentUser.SecurityQuestion2 = dataset.Tables[0].Rows[0]["SecurityQuestion2"].ToString();
+                currentUser.Answer2 = dataset.Tables[0].Rows[0]["Answer2"].ToString();
+                currentUser.SecurityQuestion3 = dataset.Tables[0].Rows[0]["SecurityQuestion3"].ToString();
+                currentUser.Answer3 = dataset.Tables[0].Rows[0]["Answer3"].ToString();
+                currentUser.Password = dataset.Tables[0].Rows[0]["Password"].ToString();
+
+
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }//end PasswordRecovery()
+
+        //method returns true if user has been found and false if user is not found or error occurred
+        public bool GetUser(string email, string password)
+        {
+            /*
+             CREATE PROCEDURE [dbo].TP_GetUser
+	            @theEmail VARCHAR(MAX),
+	            @thePassword VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_User WHERE Email= @theEmail and Password= @thePassword
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetUser";
+                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.Parameters.AddWithValue("thePassword", password);
+
+                dataset = db.GetDataSetUsingCmdObj(objCommand);
+                currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
+                currentUser.Password = dataset.Tables[0].Rows[0]["Password"].ToString();
+                currentUser.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
+                currentUser.LastName = dataset.Tables[0].Rows[0]["LastName"].ToString();
+                //wait before finishing
+                //how are we sending user data to each page
+
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }// end GetUser()
     }
 }
 
