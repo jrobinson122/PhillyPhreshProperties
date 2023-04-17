@@ -28,9 +28,7 @@
                 </div>
             </nav>
 
-            <%--create needed stored procedures to Jon db then transfer funtions to SP class--%>
             <%--should we make this the dasboard page--%>
-            <%--start doing bootstrap for all pages--%>
             <%--need a db table of houses and class for a house--%>
 
 
