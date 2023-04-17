@@ -76,13 +76,7 @@ namespace PhillyPhreshPropertiesLibrary
 
         public bool PasswordRecovery(string email)
         {
-            /*
-             CREATE PROCEDURE [dbo].TP_GetQuestions
-	            @theEmail VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_User WHERE Email= @theEmail
-            RETURN 0
-             */
+ 
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -112,14 +106,6 @@ namespace PhillyPhreshPropertiesLibrary
         //method returns true if user has been found and false if user is not found or error occurred
         public bool GetUser(string email, string password)
         {
-            /*
-             CREATE PROCEDURE [dbo].TP_GetUser
-	            @theEmail VARCHAR(MAX),
-	            @thePassword VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_User WHERE Email= @theEmail and Password= @thePassword
-            RETURN 0
-             */
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;

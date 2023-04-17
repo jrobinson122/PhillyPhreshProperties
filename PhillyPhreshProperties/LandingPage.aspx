@@ -19,16 +19,19 @@
 
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
+                    <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-danger" Text="Search" />
-                    <asp:Button ID="btnProfile" runat="server" CssClass="btn btn-outline-danger mx-1" Text="My Profile" />
-                    <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-outline-danger" Text="Edit Profile" />
+                    <asp:Button ID="btnProfile" runat="server" CssClass="btn btn-outline-danger mx-1" Text="" />
+                    <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
                     <asp:Button ID="btnMatches" runat="server" CssClass="btn btn-outline-danger mx-1" Text="Matches" />
                     <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" OnClick="btnLogout_Click" />
                 </div>
             </nav>
 
             <%--create needed stored procedures to Jon db then transfer funtions to SP class--%>
+            <%--should we make this the dasboard page--%>
             <%--start doing bootstrap for all pages--%>
+            <%--need a db table of houses and class for a house--%>
 
 
         </div><%--end landing div--%>
