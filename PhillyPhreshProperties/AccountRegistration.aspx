@@ -11,90 +11,89 @@
     <title>Account Registration</title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:Table ID="tblRegister" runat="server" HorizontalAlign="Center">
-                <asp:TableHeaderRow>
-                    <asp:TableHeaderCell>Sign Up</asp:TableHeaderCell>
-                </asp:TableHeaderRow>
+    <form id="formAccountRegistration" runat="server">
+        <div class="d-block w-50 mx-auto p-2 bg-dark text-white rounded-3">
+            <h2 class="text-center display-3">Philly Phresh Properties</h2>
+            <h3 class="text-center">Account Sign-Up</h3>
+            <asp:Table ID="tblRegister" runat="server" HorizontalAlign="Center" CssClass="table">
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Email:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterEmail" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterEmail" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Password:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterPassword" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterPassword" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             First Name:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterFirstName" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterFirstName" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Last Name:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterLastName" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterLastName" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Address:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterAddress" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterAddress" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             City:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterCity" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterCity" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             State:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterState" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterState" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Zipcode:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterZipCode" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterZipCode" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Phone Number:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtRegisterPhoneNumber" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtRegisterPhoneNumber" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Account Type:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlAccountType" runat="server">
+                        <asp:DropDownList ID="ddlAccountType" runat="server" CssClass="form-select">
                             <asp:ListItem Text="Home Buyer" Value="Buyer" />
                             <asp:ListItem Text="Home Seller" Value="Seller" />
                             <asp:ListItem Text="Real Estate Agent" Value="Agent" />
@@ -102,11 +101,11 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Security Question #1:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlSecurityQuestion1" runat="server" CssClass="ddl">
+                        <asp:DropDownList ID="ddlSecurityQuestion1" runat="server" CssClass="form-select">
                             <asp:ListItem>What is your middle name?</asp:ListItem>
                             <asp:ListItem>What city were you born in?</asp:ListItem>
                             <asp:ListItem>What is the name of your favorite pet?</asp:ListItem>
@@ -116,19 +115,19 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Answer:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtSecurityAnswer1" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtSecurityAnswer1" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Security Question #2:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlSecurityQuestion2" runat="server" CssClass="ddl">
+                        <asp:DropDownList ID="ddlSecurityQuestion2" runat="server" CssClass="form-select">
                             <asp:ListItem>What was the name of your elementary school?</asp:ListItem>
                             <asp:ListItem>What was your first job?</asp:ListItem>
                             <asp:ListItem>What was the name of your favorite teacher?</asp:ListItem>
@@ -138,7 +137,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Answer:
                             </asp:TableCell>
                     <asp:TableCell>
@@ -146,11 +145,11 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Security Question #3:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlSecurityQuestion3" runat="server" CssClass="ddl">
+                        <asp:DropDownList ID="ddlSecurityQuestion3" runat="server" CssClass="form-select">
                             <asp:ListItem>What is the name of your first boyfriend/girlfriend?</asp:ListItem>
                             <asp:ListItem>In what city does your nearest sibling live?</asp:ListItem>
                             <asp:ListItem>What is your favorite food?</asp:ListItem>
@@ -160,15 +159,15 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="form-label text-white">
                             Answer:
                             </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtSecurityAnswer3" runat="server" CssClass="txtbtn"></asp:TextBox>
+                        <asp:TextBox ID="txtSecurityAnswer3" runat="server" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Black" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-info align-content-center" OnClick="btnSubmit_Click" />
             <br />
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>

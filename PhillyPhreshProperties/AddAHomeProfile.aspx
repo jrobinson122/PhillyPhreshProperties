@@ -11,7 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="d-block w-50 mx-auto p-2 bg-dark text-white rounded-3">
             <h2>Add Home Profile</h2>
             <label>Address:</label>
             <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>

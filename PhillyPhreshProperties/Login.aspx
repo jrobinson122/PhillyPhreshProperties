@@ -38,7 +38,7 @@
 
                 <div class="row gx-5 my-1">
                     <div class="col-md-6">
-                        <asp:CheckBox ID="chkSaveLoginInfo" CssClass="" Text="Save Login" runat="server"></asp:CheckBox>
+                        <asp:CheckBox ID="chkSaveLoginInfo" CssClass="form-check-input" Text="Save Login" runat="server"></asp:CheckBox>
                     </div>
                     <div class="col-md-6">
                         <asp:Button ID="btnForgot" CssClass="btn btn-link" Text="Forgot Password" runat="server" OnClick="btnForgot_Click"></asp:Button>
@@ -58,7 +58,7 @@
 
             </div><%--end logComponents div--%>
 
-            <div id="forgot" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+            <div id="forgot" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto" visible="false">
                 <div class="row my-1">
                     <div class="col-auto">
                         <asp:Label ID="lblRecoveyQuestion" runat="server" Visible="false" CssClass="col-form-label-lg"></asp:Label>

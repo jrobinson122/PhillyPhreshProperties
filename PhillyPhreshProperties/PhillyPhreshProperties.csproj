@@ -70,8 +70,10 @@
     <Content Include="AccountRegistration.aspx" />
     <Content Include="AddAHomeProfile.aspx" />
     <Content Include="HomeSeller-AgentProfile.aspx" />
+    <Content Include="HomeShowing.aspx" />
     <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ManageHomeProfile-Agent.aspx" />
     <Content Include="PPPStyling.css" />
     <Content Include="SearchForHomes.aspx" />
     <Content Include="Web.config" />
@@ -98,6 +100,13 @@
     <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
       <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HomeShowing.aspx.cs">
+      <DependentUpon>HomeShowing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeShowing.aspx.designer.cs">
+      <DependentUpon>HomeShowing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -111,6 +120,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageHomeProfile-Agent.aspx.cs">
+      <DependentUpon>ManageHomeProfile-Agent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageHomeProfile-Agent.aspx.designer.cs">
+      <DependentUpon>ManageHomeProfile-Agent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchForHomes.aspx.cs">

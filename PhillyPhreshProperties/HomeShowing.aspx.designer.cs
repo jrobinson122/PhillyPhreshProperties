@@ -11,17 +11,17 @@ namespace PhillyPhreshProperties
 {
 
 
-    public partial class LandingPage
+    public partial class HomeShowing
     {
 
         /// <summary>
-        /// formLandingPage control.
+        /// formHomeShowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formLandingPage;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formHomeShowing;
 
         /// <summary>
         /// btnSearch control.
