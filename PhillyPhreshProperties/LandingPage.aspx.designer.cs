@@ -25,7 +25,7 @@ namespace PhillyPhreshProperties
 
         /// <summary>
         /// btnSearch control.
-=======
+
         /// TitleLbl control.
         /// </summary>
         /// <remarks>
@@ -159,7 +159,7 @@ namespace PhillyPhreshProperties
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
-=======
+
         protected global::System.Web.UI.WebControls.Label TitleLbl;
     }
 }
