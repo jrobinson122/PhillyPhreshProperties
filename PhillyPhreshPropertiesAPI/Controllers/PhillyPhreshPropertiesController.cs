@@ -91,9 +91,9 @@ namespace PhillyPhreshPropertiesAPI.Controllers
             }
         }
         [HttpGet("SearchForHomeByLocationAndPrice/{city}/{minPrice}/{maxPrice}")]
-        public Home GetHomesByLocationAndPrice(string city, decimal minPrice, decimal maxPrice)
+        public List<Home> GetHomesByLocationAndPrice(string city, decimal minPrice, decimal maxPrice)
         {
-            Home home = null;
+            List<Home> homeList = new List<Home>();
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -102,61 +102,67 @@ namespace PhillyPhreshPropertiesAPI.Controllers
             objCommand.Parameters.AddWithValue("@theMinPrice", minPrice);
             objCommand.Parameters.AddWithValue("@theMaxPrice", maxPrice);
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-            if (myDS.Tables[0].Rows.Count > 0)
-            {
-                home = new Home();
-                home.Address = objDB.GetField("Address", 0).ToString();
-                home.City = objDB.GetField("City", 0).ToString();
-                home.PropertyType = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", 0).ToString());
-                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", 0).ToString());
-                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", 0).ToString());
-                home.Amenities = objDB.GetField("Amenities", 0).ToString();
-                home.HeatingCooling = objDB.GetField("HeatingCooling", 0).ToString();
-                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", 0).ToString());
-                home.Garage = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeDescription = objDB.GetField("Description", 0).ToString();
-                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", 0).ToString());
-            }
-            return home;
+            int count = myDS.Tables[0].Rows.Count;
+            for(int i = 0; i < count; i++)
+                {
+                   Home home = new Home();
+                    home.Address = objDB.GetField("Address", i).ToString();
+                    home.City = objDB.GetField("City", i).ToString();
+                    home.PropertyType = objDB.GetField("PropertyType", i).ToString();
+                    home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", i).ToString());
+                    home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", i).ToString());
+                    home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", i).ToString());
+                    home.Amenities = objDB.GetField("Amenities", i).ToString();
+                    home.HeatingCooling = objDB.GetField("HeatingCooling", i).ToString();
+                    home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", i).ToString());
+                    home.Garage = objDB.GetField("Garage", i).ToString();
+                    home.HomeDescription = objDB.GetField("Description", i).ToString();
+                    home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", i).ToString());
+
+                homeList.Add(home);
+                }
+            return homeList;
         }
 
         [HttpGet("SearchForHomesByLocationPropertyAndPrice/{city}/{propertyType}/{minPrice}/{maxPrice}")]
-        public Home GetHomesByLocationPropertyAndPrice(string city, string propertyType, decimal minPrice, decimal maxPrice)
+        public List<Home> GetHomesByLocationPropertyAndPrice(string city, string propertyType, decimal minPrice, decimal maxPrice)
         {
-            Home home = null;
+            List<Home> homeList = new List<Home>();
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetHomeByLocationPropertyAndPrice";
-            objCommand.Parameters.AddWithValue("@theCity", city);
-            objCommand.Parameters.AddWithValue("@thePropertytype", propertyType);
+            objCommand.Parameters.AddWithValue("@theCity", city); 
+            objCommand.Parameters.AddWithValue("@thePropertyType", propertyType);
             objCommand.Parameters.AddWithValue("@theMinPrice", minPrice);
             objCommand.Parameters.AddWithValue("@theMaxPrice", maxPrice);
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-            if (myDS.Tables[0].Rows.Count > 0)
+            int count = myDS.Tables[0].Rows.Count;
+            for (int i = 0; i < count; i++)
             {
-                home = new Home();
-                home.Address = objDB.GetField("Address", 0).ToString();
-                home.City = objDB.GetField("City", 0).ToString();
-                home.PropertyType = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", 0).ToString());
-                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", 0).ToString());
-                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", 0).ToString());
-                home.Amenities = objDB.GetField("Amenities", 0).ToString();
-                home.HeatingCooling = objDB.GetField("HeatingCooling", 0).ToString();
-                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", 0).ToString());
-                home.Garage = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeDescription = objDB.GetField("Description", 0).ToString();
-                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", 0).ToString());
+                Home home = new Home();
+                home.Address = objDB.GetField("Address", i).ToString();
+                home.City = objDB.GetField("City", i).ToString();
+                home.PropertyType = objDB.GetField("PropertyType", i).ToString();
+                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", i).ToString());
+                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", i).ToString());
+                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", i).ToString());
+                home.Amenities = objDB.GetField("Amenities", i).ToString();
+                home.HeatingCooling = objDB.GetField("HeatingCooling", i).ToString();
+                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", i).ToString());
+                home.Garage = objDB.GetField("Garage", i).ToString();
+                home.HomeDescription = objDB.GetField("Description", i).ToString();
+                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", i).ToString());
+
+                homeList.Add(home);
             }
-            return home;
+            return homeList;
         }
 
         [HttpGet("SearchForHomesByLocationPricePropertyHouseSizeMinNumBedsAndMinNumBaths/{city}/{minPrice}/{maxPrice}/{propertyType}/{houseSize}/{minNumBeds}/{minNumBaths}")]
-        public Home GetHomesByLocation_Price_PropertyType_HomeSize_MinBedrooms_MinBathrooms(string city, decimal minPrice, decimal maxPrice, string propertyType, int minHouseSize, int minNumBeds, int minNumBaths)
+        public List<Home> GetHomesByLocation_Price_PropertyType_HomeSize_MinBedrooms_MinBathrooms(string city, decimal minPrice, decimal maxPrice, string propertyType, int minHouseSize, int minNumBeds, int minNumBaths)
         {
-            Home home = null;
+            List<Home> homeList = new List<Home>();
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -164,63 +170,66 @@ namespace PhillyPhreshPropertiesAPI.Controllers
             objCommand.Parameters.AddWithValue("@theCity", city);
             objCommand.Parameters.AddWithValue("@theMinPrice", minPrice);
             objCommand.Parameters.AddWithValue("@theMaxPrice", maxPrice);
-            objCommand.Parameters.AddWithValue("@thePropertytype", propertyType);         
+            objCommand.Parameters.AddWithValue("@thePropertyType", propertyType);         
             objCommand.Parameters.AddWithValue("@theMinHouseSize", minHouseSize);
             objCommand.Parameters.AddWithValue("@theMinBedrooms", minNumBeds);
             objCommand.Parameters.AddWithValue("@theMinBathrooms", minNumBaths);
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-            if (myDS.Tables[0].Rows.Count > 0)
+            int count = myDS.Tables[0].Rows.Count;
+            for (int i = 0; i < count; i++)
             {
-                home = new Home();
-                home.Address = objDB.GetField("Address", 0).ToString();
-                home.City = objDB.GetField("City", 0).ToString();
-                home.PropertyType = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", 0).ToString());
-                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", 0).ToString());
-                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", 0).ToString());
-                home.Amenities = objDB.GetField("Amenities", 0).ToString();
-                home.HeatingCooling = objDB.GetField("HeatingCooling", 0).ToString();
-                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", 0).ToString());
-                home.Garage = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeDescription = objDB.GetField("Description", 0).ToString();
-                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", 0).ToString());
+                Home home = new Home();
+                home.Address = objDB.GetField("Address", i).ToString();
+                home.City = objDB.GetField("City", i).ToString();
+                home.PropertyType = objDB.GetField("PropertyType", i).ToString();
+                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", i).ToString());
+                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", i).ToString());
+                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", i).ToString());
+                home.Amenities = objDB.GetField("Amenities", i).ToString();
+                home.HeatingCooling = objDB.GetField("HeatingCooling", i).ToString();
+                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", i).ToString());
+                home.Garage = objDB.GetField("Garage", i).ToString();
+                home.HomeDescription = objDB.GetField("Description", i).ToString();
+                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", i).ToString());
+
+                homeList.Add(home);
             }
-            return home;
+            return homeList;
         }
-        [HttpGet("SearchForHomesByPriceHouseSizeMinNumBedsMinNumBathsAndAmenities/{city}/{minPrice}/{maxPrice}/{propertyType}/{houseSize}/{minNumBeds}/{minNumBaths}")]
-        public Home GetHomesByPrice_HouseSize_MinNumBedrooms_MinNumBathrooms_Amenities(string city, decimal minPrice, decimal maxPrice, string propertyType, int minHouseSize, int minNumBeds, int minNumBaths)
-        {
-            Home home = null;
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_GetHomeByLocation_Price_Property_HouseSize_MinNumBeds_MinNumBaths";
-            objCommand.Parameters.AddWithValue("@theCity", city);
-            objCommand.Parameters.AddWithValue("@theMinPrice", minPrice);
-            objCommand.Parameters.AddWithValue("@theMaxPrice", maxPrice);
-            objCommand.Parameters.AddWithValue("@thePropertytype", propertyType);
-            objCommand.Parameters.AddWithValue("@theMinHouseSize", minHouseSize);
-            objCommand.Parameters.AddWithValue("@theMinBedrooms", minNumBeds);
-            objCommand.Parameters.AddWithValue("@theMinBathrooms", minNumBaths);
-            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-            if (myDS.Tables[0].Rows.Count > 0)
-            {
-                home = new Home();
-                home.Address = objDB.GetField("Address", 0).ToString();
-                home.City = objDB.GetField("City", 0).ToString();
-                home.PropertyType = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", 0).ToString());
-                home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", 0).ToString());
-                home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", 0).ToString());
-                home.Amenities = objDB.GetField("Amenities", 0).ToString();
-                home.HeatingCooling = objDB.GetField("HeatingCooling", 0).ToString();
-                home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", 0).ToString());
-                home.Garage = objDB.GetField("PropertyType", 0).ToString();
-                home.HomeDescription = objDB.GetField("Description", 0).ToString();
-                home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", 0).ToString());
-            }
-            return home;
-        }
+        //[HttpGet("SearchForHomesByPriceHouseSizeMinNumBedsMinNumBathsAndAmenities/{city}/{minPrice}/{maxPrice}/{propertyType}/{houseSize}/{minNumBeds}/{minNumBaths}")]
+        //public Home GetHomesByPrice_HouseSize_MinNumBedrooms_MinNumBathrooms_Amenities(string city, decimal minPrice, decimal maxPrice, string propertyType, int minHouseSize, int minNumBeds, int minNumBaths)
+        //{
+        //    Home home = null;
+        //    DBConnect objDB = new DBConnect();
+        //    SqlCommand objCommand = new SqlCommand();
+        //    objCommand.CommandType = CommandType.StoredProcedure;
+        //    objCommand.CommandText = "TP_GetHomeByLocation_Price_Property_HouseSize_MinNumBeds_MinNumBaths";
+        //    objCommand.Parameters.AddWithValue("@theCity", city);
+        //    objCommand.Parameters.AddWithValue("@theMinPrice", minPrice);
+        //    objCommand.Parameters.AddWithValue("@theMaxPrice", maxPrice);
+        //    objCommand.Parameters.AddWithValue("@thePropertytype", propertyType);
+        //    objCommand.Parameters.AddWithValue("@theMinHouseSize", minHouseSize);
+        //    objCommand.Parameters.AddWithValue("@theMinBedrooms", minNumBeds);
+        //    objCommand.Parameters.AddWithValue("@theMinBathrooms", minNumBaths);
+        //    DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+        //    if (myDS.Tables[0].Rows.Count > 0)
+        //    {
+        //        home = new Home();
+        //        home.Address = objDB.GetField("Address", 0).ToString();
+        //        home.City = objDB.GetField("City", 0).ToString();
+        //        home.PropertyType = objDB.GetField("PropertyType", 0).ToString();
+        //        home.HomeSize = Convert.ToInt32(objDB.GetField("HomeSize", 0).ToString());
+        //        home.Bedrooms = Convert.ToInt32(objDB.GetField("NumBeds", 0).ToString());
+        //        home.Bathrooms = Convert.ToInt32(objDB.GetField("NumBath", 0).ToString());
+        //        home.Amenities = objDB.GetField("Amenities", 0).ToString();
+        //        home.HeatingCooling = objDB.GetField("HeatingCooling", 0).ToString();
+        //        home.YearBuilt = Convert.ToInt32(objDB.GetField("YearBuilt", 0).ToString());
+        //        home.Garage = objDB.GetField("PropertyType", 0).ToString();
+        //        home.HomeDescription = objDB.GetField("Description", 0).ToString();
+        //        home.AskingPrice = Convert.ToDecimal(objDB.GetField("AskingPrice", 0).ToString());
+        //    }
+        //    return home;
+        //}
 
 
 

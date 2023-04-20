@@ -48,7 +48,8 @@ namespace PhillyPhreshProperties
 
         protected void searchByCityAndPriceBtn_Click(object sender, EventArgs e)
         {
-            priceAndCitySearchTable.Visible = true;
+            CriteriaSearchTable.Visible = true;
+            propertyCell.Visible = false;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -58,7 +59,84 @@ namespace PhillyPhreshProperties
 
         protected void searchForHomesByCityAndPrice_Click(object sender, EventArgs e)
         {
-            //WebRequest request = WebRequest.Create(webApiUrl + "SearchForHomeByCityAndPrice/" + )
+            WebRequest request = WebRequest.Create(webApiUrl + "SearchForHomeByLocationAndPrice/" + cityTxtBox.Text + "/" + minmumPricetxt.Text + "/" + maximumPricetxt.Text);
+            WebResponse response = request.GetResponse();
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<Home> homes = js.Deserialize<List<Home>>(data);
+            gvHomes.DataSource = homes;
+            gvHomes.DataBind();
+
+            cityTxtBox.Text = "";
+            minmumPricetxt.Text = "";
+            maximumPricetxt.Text = "";
+
+            if (homes.Count == 0)
+            {
+                lblMessage.Text = "No records found by those values";
+            }
+        }
+
+        protected void searchForHomesByLocationPropertyAndPriceBtn_Click(object sender, EventArgs e)
+        {
+            WebRequest request = WebRequest.Create(webApiUrl + "SearchForHomesByLocationPropertyAndPrice/" + cityTxtBox.Text + "/" + propertyTypeDDL.SelectedValue + "/" + minmumPricetxt.Text + "/" + maximumPricetxt.Text);
+            WebResponse response = request.GetResponse();
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<Home> homes = js.Deserialize<List<Home>>(data);
+            gvHomes.DataSource = homes;
+            gvHomes.DataBind();
+
+            cityTxtBox.Text = "";
+            minmumPricetxt.Text = "";
+            maximumPricetxt.Text = "";
+        }
+
+        protected void searchByLocationPropertyTypeAndPrice_Click(object sender, EventArgs e)
+        {
+            CriteriaSearchTable.Visible = true;
+            propertyCell.Visible = true;
+        }
+
+        protected void searchByLocationPricePropertySizeBedBathBtn_Click(object sender, EventArgs e)
+        {
+            CriteriaSearchTable.Visible = true;
+            propertyCell.Visible = true;
+            searchForHomesByLocationPropertyAndPriceBtn.Visible = false;
+            searchForHomesByCityAndPrice.Visible = false;
+        }
+
+        protected void searchForHomesByLocationPropertyPriceAndCriteria_Click(object sender, EventArgs e)
+        {
+            WebRequest request = WebRequest.Create(webApiUrl + "SearchForHomesByLocationPricePropertyHouseSizeMinNumBedsAndMinNumBaths/" + cityTxtBox.Text + "/" + propertyTypeDDL.SelectedValue + "/" + minmumPricetxt.Text + "/" + maximumPricetxt.Text + "/" + homeSizeTxt.Text);
+            WebResponse response = request.GetResponse();
+
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<Home> homes = js.Deserialize<List<Home>>(data);
+            gvHomes.DataSource = homes;
+            gvHomes.DataBind();
+
+            cityTxtBox.Text = "";
+            minmumPricetxt.Text = "";
+            maximumPricetxt.Text = "";
         }
     }
 

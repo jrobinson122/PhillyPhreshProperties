@@ -29,6 +29,7 @@ namespace PhillyPhreshProperties
             //Create an object of the Home class 
             Home home = new Home();
             home.Address = txtAddress.Text;
+            home.City = txtCity.Text;
             home.PropertyType = ddlPropertyType.SelectedValue;
             home.HomeSize = Convert.ToInt32(txtHomeSize.Text);
             home.Bedrooms = Convert.ToInt32(txtNumBedrooms.Text);

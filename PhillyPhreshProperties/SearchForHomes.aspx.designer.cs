@@ -33,40 +33,49 @@ namespace PhillyPhreshProperties
         protected global::System.Web.UI.WebControls.Button filterBtn;
 
         /// <summary>
-        /// searchByCityAndPriceBtn control.
+        /// searchByLocationAndPriceBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button searchByCityAndPriceBtn;
+        protected global::System.Web.UI.WebControls.Button searchByLocationAndPriceBtn;
 
         /// <summary>
-        /// searchByLocationPropertyTypeAndPrice control.
+        /// searchByLocationPropertyTypeAndPriceBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button searchByLocationPropertyTypeAndPrice;
+        protected global::System.Web.UI.WebControls.Button searchByLocationPropertyTypeAndPriceBtn;
 
         /// <summary>
-        /// searchBy control.
+        /// searchByLocationPricePropertySizeBedBathBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button searchBy;
+        protected global::System.Web.UI.WebControls.Button searchByLocationPricePropertySizeBedBathBtn;
 
         /// <summary>
-        /// priceAndCitySearchTable control.
+        /// CriteriaSearchTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table priceAndCitySearchTable;
+        protected global::System.Web.UI.WebControls.Table CriteriaSearchTable;
+
+        /// <summary>
+        /// cityCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cityCell;
 
         /// <summary>
         /// cityLbl control.
@@ -87,31 +96,40 @@ namespace PhillyPhreshProperties
         protected global::System.Web.UI.WebControls.TextBox cityTxtBox;
 
         /// <summary>
-        /// Label2 control.
+        /// priceCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TableCell priceCell;
 
         /// <summary>
-        /// TextBox2 control.
+        /// priceLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.Label priceLbl;
 
         /// <summary>
-        /// TextBox3 control.
+        /// minmumPricetxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox minmumPricetxt;
+
+        /// <summary>
+        /// maximumPricetxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox maximumPricetxt;
 
         /// <summary>
         /// searchForHomesByCityAndPrice control.
@@ -121,6 +139,69 @@ namespace PhillyPhreshProperties
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button searchForHomesByCityAndPrice;
+
+        /// <summary>
+        /// propertyCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell propertyCell;
+
+        /// <summary>
+        /// propertyTypeDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList propertyTypeDDL;
+
+        /// <summary>
+        /// searchForHomesByLocationPropertyAndPriceBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchForHomesByLocationPropertyAndPriceBtn;
+
+        /// <summary>
+        /// homeSizeCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell homeSizeCell;
+
+        /// <summary>
+        /// homeSizeLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label homeSizeLbl;
+
+        /// <summary>
+        /// homeSizeTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox homeSizeTxt;
+
+        /// <summary>
+        /// searchForHomesByLocationPropertyPriceAndCriteria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchForHomesByLocationPropertyPriceAndCriteria;
 
         /// <summary>
         /// scheduleShowingBtn control.
@@ -148,5 +229,14 @@ namespace PhillyPhreshProperties
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvHomes;
+
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }
