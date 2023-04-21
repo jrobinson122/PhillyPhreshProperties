@@ -16,6 +16,9 @@
             <label>Address:</label>
             <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
             <br />
+            <label>City:</label>
+            <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+            <br />
             <label>Property Type:</label>
             <asp:DropDownList ID="ddlPropertyType" runat="server">
                 <asp:ListItem Text="Single Family" Value="SingleFamily"></asp:ListItem>

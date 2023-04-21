@@ -8,11 +8,11 @@ namespace PhillyPhreshPropertiesLibrary
 {
     class Profile
     {
-        public User User
-        {
-            get { return User; }
-            set { User = value; }
-        }
+        //public User User
+        //{
+        //    get { return User; }
+        //    set { User = value; }
+        //}
 
         //public List<Photo> Photos
         //{
