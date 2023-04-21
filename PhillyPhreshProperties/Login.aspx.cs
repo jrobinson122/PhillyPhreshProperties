@@ -11,6 +11,7 @@ namespace PhillyPhreshProperties
     public partial class Login : System.Web.UI.Page
     {
         User user = new User();
+        StoredProcedures procedure = new StoredProcedures();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,9 +30,9 @@ namespace PhillyPhreshProperties
 
             if (!lblError.Visible)
             {
-                user.GetUser();
+                procedure.GetUser();
 
-                if(user.GetUser())
+                if(procedure.GetUser())
                 {                    
                     if (chkSaveLoginInfo.Checked)
                     {

@@ -11,187 +11,142 @@ namespace PhillyPhreshProperties
 {
 
 
-    public partial class AccountRegistration
+    public partial class ShowingUser
     {
 
         /// <summary>
-        /// formAccountRegistration control.
+        /// formShowingUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formAccountRegistration;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formShowingUser;
 
         /// <summary>
-        /// tblRegister control.
+        /// btnHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblRegister;
+        protected global::System.Web.UI.WebControls.Button btnHome;
 
         /// <summary>
-        /// txtRegisterEmail control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterEmail;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// txtRegisterPassword control.
+        /// btnShowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterPassword;
+        protected global::System.Web.UI.WebControls.Button btnShowing;
 
         /// <summary>
-        /// txtRegisterFirstName control.
+        /// btnLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterFirstName;
+        protected global::System.Web.UI.WebControls.Button btnLogout;
 
         /// <summary>
-        /// txtRegisterLastName control.
+        /// rptShowings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterLastName;
+        protected global::System.Web.UI.WebControls.Repeater rptShowings;
 
         /// <summary>
-        /// txtRegisterAddress control.
+        /// btnExit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterAddress;
+        protected global::System.Web.UI.WebControls.Button btnExit;
 
         /// <summary>
-        /// txtRegisterCity control.
+        /// pnlModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterCity;
+        protected global::System.Web.UI.WebControls.Panel pnlModal;
 
         /// <summary>
-        /// txtRegisterState control.
+        /// lblAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterState;
+        protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// txtRegisterZipCode control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterZipCode;
+        protected global::System.Web.UI.WebControls.Label lblCity;
 
         /// <summary>
-        /// txtRegisterPhoneNumber control.
+        /// lblAgent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterPhoneNumber;
+        protected global::System.Web.UI.WebControls.Label lblAgent;
 
         /// <summary>
-        /// ddlAccountType control.
+        /// lblSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAccountType;
+        protected global::System.Web.UI.WebControls.Label lblSchedule;
 
         /// <summary>
-        /// ddlSecurityQuestion1 control.
+        /// ddlDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSecurityQuestion1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDate;
 
         /// <summary>
-        /// txtSecurityAnswer1 control.
+        /// ddlTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSecurityAnswer1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTime;
 
         /// <summary>
-        /// ddlSecurityQuestion2 control.
+        /// btnSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSecurityQuestion2;
-
-        /// <summary>
-        /// txtSecurityAnswer2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSecurityAnswer2;
-
-        /// <summary>
-        /// ddlSecurityQuestion3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSecurityQuestion3;
-
-        /// <summary>
-        /// txtSecurityAnswer3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSecurityAnswer3;
-
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-
-        /// <summary>
-        /// lblMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Button btnSchedule;
     }
 }

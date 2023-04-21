@@ -11,7 +11,6 @@ namespace PhillyPhreshPropertiesLibrary
 {
     public class User
     {
-        private string userID;
         private string email = "";
         private string password = "";
         private string firstname = "";
@@ -57,78 +56,6 @@ namespace PhillyPhreshPropertiesLibrary
             this.answer3 = answer3;
         }
 
-        //method returns true if user has been found and false if user is not found or error occurred
-        public bool GetUser()
-        {
-            /*
-             CREATE PROCEDURE [dbo].TP_GetUser
-	            @theEmail VARCHAR(MAX),
-	            @thePassword VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_User WHERE Email= @theEmail and Password= @thePassword
-            RETURN 0
-             */
-            try
-            {
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
-                objCommand.Parameters.AddWithValue("thePassword", password);
-
-                dataset = db.GetDataSetUsingCmdObj(objCommand);
-                userID = dataset.Tables[0].Rows[0]["UserId"].ToString();
-                email= dataset.Tables[0].Rows[0]["Email"].ToString();
-                password= dataset.Tables[0].Rows[0]["Password"].ToString();
-                firstname= dataset.Tables[0].Rows[0]["FirstName"].ToString();
-                lastname= dataset.Tables[0].Rows[0]["LastName"].ToString();
-                //wait before finishing
-                //how are we sending user data to each page
-
-                objCommand.Parameters.Clear();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }// end GetUser()
-
-        public bool PasswordRecovery()
-        {
-            /*
-             CREATE PROCEDURE [dbo].TP_GetQuestions
-	            @theEmail VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_User WHERE Email= @theEmail
-            RETURN 0
-             */
-            try
-            {
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_ConfirmUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
-                
-                dataset = db.GetDataSetUsingCmdObj(objCommand);
-                securityQuestion1 = dataset.Tables[0].Rows[0]["SecurityQuestion1"].ToString();
-                answer1 = dataset.Tables[0].Rows[0]["Answer1"].ToString();
-                securityQuestion2 = dataset.Tables[0].Rows[0]["SecurityQuestion2"].ToString();
-                answer2 = dataset.Tables[0].Rows[0]["Answer2"].ToString();
-                securityQuestion3 = dataset.Tables[0].Rows[0]["SecurityQuestion3"].ToString();
-                answer3 = dataset.Tables[0].Rows[0]["Answer3"].ToString();
-                password = dataset.Tables[0].Rows[0]["Password"].ToString();
-
-
-                objCommand.Parameters.Clear();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }//end PasswordRecovery()
-
         public bool CheckSecurityAnswer(string answer)
         {
 
@@ -150,13 +77,10 @@ namespace PhillyPhreshPropertiesLibrary
                 return false;
             }
 
-            
+
         }//end CheckSecurityAnswer()
 
         //getters and setters
-        public string UserID
-        { get { return userID; } set { userID = value; } }
-
         public string Email
         { get { return email; } set { email = value; } }
 
@@ -204,6 +128,9 @@ namespace PhillyPhreshPropertiesLibrary
 
         public string Answer3
         { get { return answer3; } set { answer3 = value; } }
+
+
+    }//end User class
 
     }
 //using System.Linq;
@@ -277,4 +204,7 @@ namespace PhillyPhreshPropertiesLibrary
 //            set { phoneNumber = value; }
 //        }
 //    }
+
 }
+
+ 

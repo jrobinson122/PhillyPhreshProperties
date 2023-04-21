@@ -36,12 +36,12 @@
                     </div>
                 </div><%--end password div--%>
 
-                <div class="row gx-5 my-1">
+                <div class="row gx-4 my-1">
                     <div class="col-md-6">
-                        <asp:CheckBox ID="chkSaveLoginInfo" CssClass="" Text="Save Login" runat="server"></asp:CheckBox>
+                        <asp:CheckBox ID="chkSaveLoginInfo" runat="server" CssClass="form-check-input bg-dark mt-3" Text="Save Login"/>
                     </div>
                     <div class="col-md-6">
-                        <asp:Button ID="btnForgot" CssClass="btn btn-link" Text="Forgot Password" runat="server" OnClick="btnForgot_Click"></asp:Button>
+                        <asp:Button ID="btnForgot" CssClass="btn btn-link" Text="Forgot Password" runat="server" OnClick="btnForgot_Click"/>
                     </div>
                 </div><%--end check/forgot div--%>
 
@@ -54,11 +54,11 @@
                     </div>
                 </div><%--end buttons div--%>
                 
-                <asp:Label ID="lblError" runat="server" Visible="false" CssClass="ms-3 text-warning"></asp:Label>
+                <asp:Label ID="lblError" runat="server" Visible="false" CssClass="ms-3 text-warning"/>
 
             </div><%--end logComponents div--%>
 
-            <div id="forgot" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+            <div id="forgot" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto" visible="false">
                 <div class="row my-1">
                     <div class="col-auto">
                         <asp:Label ID="lblRecoveyQuestion" runat="server" Visible="false" CssClass="col-form-label-lg"></asp:Label>
