@@ -14,7 +14,7 @@ namespace PhillyPhreshPropertiesLibrary
     public class StoredProcedures
     {
         //database connection
-        DBConnect db = new DBConnect();
+        DBConnect objDB = new DBConnect();
         SqlCommand objCommand = new SqlCommand();
         DataSet dataset = new DataSet();
         User currentUser = new User();
@@ -46,7 +46,7 @@ namespace PhillyPhreshPropertiesLibrary
             }
             return false;
         }
-        public Boolean AddHouse(string Address, string PropertyType, string HomeSize, string NumBeds, string NumBaths, string Amenities, string HeatingCooling, string YearBuilt, string Garage, string Description, string askingPrice)
+        public Boolean AddHouse(string Address, string PropertyType, string HomeSize, string NumBeds, string NumBaths, string Amenities, string HeatingCooling, string YearBuilt, string Garage, string Description, string AskingPrice)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
@@ -62,7 +62,7 @@ namespace PhillyPhreshPropertiesLibrary
             objCommand.Parameters.AddWithValue("@TheYearBuilt", YearBuilt);
             objCommand.Parameters.AddWithValue("@theGarage", Garage);
             objCommand.Parameters.AddWithValue("@theDescription", Description);
-            objCommand.Parameters.AddWithValue("@theAskingPrice", askingPrice);
+            objCommand.Parameters.AddWithValue("@theAskingPrice", AskingPrice);
 
             if (objDB.DoUpdateUsingCmdObj(objCommand) > 0)
             {
@@ -76,14 +76,20 @@ namespace PhillyPhreshPropertiesLibrary
 
         public bool PasswordRecovery(string email)
         {
- 
+            /*
+             CREATE PROCEDURE [dbo].TP_ConfirmUser
+	            @theEmail VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_Users WHERE Email= @theEmail
+            RETURN 0
+             */
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_ConfirmUser";
                 objCommand.Parameters.AddWithValue("theEmail", email);
 
-                dataset = db.GetDataSetUsingCmdObj(objCommand);
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 currentUser.SecurityQuestion1= dataset.Tables[0].Rows[0]["SecurityQuestion1"].ToString();
                 currentUser.Answer1 = dataset.Tables[0].Rows[0]["Answer1"].ToString();
                 currentUser.SecurityQuestion2 = dataset.Tables[0].Rows[0]["SecurityQuestion2"].ToString();
@@ -113,7 +119,7 @@ namespace PhillyPhreshPropertiesLibrary
                 objCommand.Parameters.AddWithValue("theEmail", email);
                 objCommand.Parameters.AddWithValue("thePassword", password);
 
-                dataset = db.GetDataSetUsingCmdObj(objCommand);
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
                 currentUser.Password = dataset.Tables[0].Rows[0]["Password"].ToString();
                 currentUser.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
@@ -130,6 +136,77 @@ namespace PhillyPhreshPropertiesLibrary
                 return false;
             }
         }// end GetUser()
+
+        public bool AddShowing(string email, string buyer, string agent, string address, string time, DateTime date)
+        {
+            /*
+             CREATE PROCEDURE [dbo].TP_AddShowing
+	            @theEmail VARCHAR(MAX),
+                @theBuyer VARCHAR(MAX),
+                @theAgent VARCHAR(MAX),
+                @theAddress VARCHAR(MAX),
+                @theDate DATETIME,
+                @theTime VARCHAR(50)
+            AS
+	            INSERT INTO TP_Showings (Email, Buyer, Agent, Address, Date, Time)
+                VALUES (@theEmail, @theBuyer, @theAgent, @theAddress, @theDate, @theTime)
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_Showings";
+
+                objCommand.Parameters.AddWithValue("@theEmail", email);
+                objCommand.Parameters.AddWithValue("@theBuyer", buyer);
+                objCommand.Parameters.AddWithValue("@theAgent", agent);
+                objCommand.Parameters.AddWithValue("@theAddress", address);
+                objCommand.Parameters.AddWithValue("@theDate", date);
+                objCommand.Parameters.AddWithValue("@theTime", time);
+
+                objDB.DoUpdate(objCommand);
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }//end AddShowing()
+
+        public bool LoadShowings(string email, string agent, string buyer, string property, string time, DateTime date)
+        {
+            /*
+             CREATE PROCEDURE [dbo].TP_LoadShowings
+	            @theEmail VARCHAR(MAX),
+                @theAgent VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_Showings WHERE Email= @theEmail and Agent= @theAgent
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_LoadShowings";
+                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.Parameters.AddWithValue("theAgent", agent);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                currentUser.Email = dataset.Tables[0].Rows[0]["Buyer"].ToString();
+                currentUser.Password = dataset.Tables[0].Rows[0]["Address"].ToString();
+                currentUser.FirstName = dataset.Tables[0].Rows[0]["Date"].ToString();
+                currentUser.LastName = dataset.Tables[0].Rows[0]["Time"].ToString();
+
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }//end LoadShowings
     }
 }
 

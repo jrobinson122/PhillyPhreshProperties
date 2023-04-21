@@ -170,7 +170,7 @@
                     </asp:TableRow>
                 </asp:Table>
                 
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-info align-content-center"    OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-info align-content-center" OnClick="btnSubmit_Click" />
                 <br />
                 <asp:Label ID="lblMessage" runat="server"></asp:Label>
             </div>

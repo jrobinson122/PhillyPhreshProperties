@@ -69,9 +69,11 @@
   <ItemGroup>
     <Content Include="AccountRegistration.aspx" />
     <Content Include="AddAHomeProfile.aspx" />
+    <Content Include="Dashboard-Agent.aspx" />
     <Content Include="HomeSeller-AgentProfile.aspx" />
-    <Content Include="HomeShowing.aspx" />
-    <Content Include="LandingPage.aspx" />
+    <Content Include="Showing-Agent.aspx" />
+    <Content Include="ShowingUser.aspx" />
+    <Content Include="Dashboard-User.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ManageHomeProfile-Agent.aspx" />
     <Content Include="PPPStyling.css" />
@@ -93,6 +95,13 @@
     <Compile Include="AddAHomeProfile.aspx.designer.cs">
       <DependentUpon>AddAHomeProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard-Agent.aspx.cs">
+      <DependentUpon>Dashboard-Agent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard-Agent.aspx.designer.cs">
+      <DependentUpon>Dashboard-Agent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HomeSeller-AgentProfile.aspx.cs">
       <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,19 +109,26 @@
     <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
       <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HomeShowing.aspx.cs">
-      <DependentUpon>HomeShowing.aspx</DependentUpon>
+    <Compile Include="Showing-Agent.aspx.cs">
+      <DependentUpon>Showing-Agent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomeShowing.aspx.designer.cs">
-      <DependentUpon>HomeShowing.aspx</DependentUpon>
+    <Compile Include="Showing-Agent.aspx.designer.cs">
+      <DependentUpon>Showing-Agent.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LandingPage.aspx.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
+    <Compile Include="ShowingUser.aspx.cs">
+      <DependentUpon>ShowingUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LandingPage.aspx.designer.cs">
-      <DependentUpon>LandingPage.aspx</DependentUpon>
+    <Compile Include="ShowingUser.aspx.designer.cs">
+      <DependentUpon>ShowingUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard-User.aspx.cs">
+      <DependentUpon>Dashboard-User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard-User.aspx.designer.cs">
+      <DependentUpon>Dashboard-User.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

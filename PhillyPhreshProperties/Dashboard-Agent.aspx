@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.aspx.cs" Inherits="PhillyPhreshProperties.LandingPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard-Agent.aspx.cs" Inherits="PhillyPhreshProperties.Dashboard_Agent" %>
 
 <!DOCTYPE html>
 
@@ -11,28 +11,23 @@
     <title>Home</title>
 </head>
 <body>
-    <form id="formLandingPage" runat="server">
-        <div id="landing" class="d-block w-50 mx-auto p-2 bg-dark text-white rounded-3">
-            <h2 class="text-center display-3">Philly Phresh Properties</h2>
-            <h5>Find the home of your dreams below. Please be sure to select and enter a location and price range.</h5>
-            <br />
-
+    <form id="formDashboardAgent" runat="server">
+        <div id="dashboardAgent">
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-danger" Text="Search" />
-                    <asp:Button ID="btnProfile" runat="server" CssClass="btn btn-outline-danger mx-1" Text="" />
                     <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
-                    <asp:Button ID="btnMatches" runat="server" CssClass="btn btn-outline-danger mx-1" Text="Matches" />
                     <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" OnClick="btnLogout_Click" />
                 </div>
             </nav>
 
-            <%--should we make this the dasboard page--%>
-            <%--need a db table of houses and class for a house--%>
+            <%--create a button for each home that would allow an agent to modify the info of a home--%>
+            <%--would need to query db to access and update house table--%>
+            <%--match the city of the house to the city of the agent--%>
+            <%--one agent per city--%>
 
-
-        </div><%--end landing div--%>
+        </div>
     </form>
 </body>
 </html>

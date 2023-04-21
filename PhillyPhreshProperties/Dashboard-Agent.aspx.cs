@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PhillyPhreshProperties
 {
-    public partial class HomeShowing : System.Web.UI.Page
+    public partial class Dashboard_Agent : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
