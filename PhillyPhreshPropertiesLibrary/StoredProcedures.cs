@@ -17,7 +17,7 @@ namespace PhillyPhreshPropertiesLibrary
         DBConnect objDB = new DBConnect();
         SqlCommand objCommand = new SqlCommand();
         DataSet dataset = new DataSet();
-        User currentUser = new User();
+       
 
         public Boolean AddUser(string Email, string Password, string FirstName, string LastName, string Address, string City, string State, string Zipcode, string PhoneNumber, string Question1, string Answer1, string Question2, string Answer2, string Question3, string Answer3)
         {
@@ -74,15 +74,64 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }
 
-        public bool PasswordRecovery(string email)
+        public User GetUser(string email, string password)
         {
-            /*
-             CREATE PROCEDURE [dbo].TP_ConfirmUser
-	            @theEmail VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_Users WHERE Email= @theEmail
-            RETURN 0
-             */
+            User currentUser = new User();
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetUser";
+                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.Parameters.AddWithValue("thePassword", password);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
+                currentUser.Password = dataset.Tables[0].Rows[0]["Password"].ToString();
+                currentUser.AccountType= dataset.Tables[0].Rows[0]["AccountType"].ToString();
+
+                objCommand.Parameters.Clear();
+
+                return currentUser;
+            }
+            catch
+            {
+                return null;
+            }
+        }// end GetUser()
+
+        public User LoadUser(string email, string type)
+        {
+            User currentUser = new User();
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_LoadUser";
+                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.Parameters.AddWithValue("theType", type);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
+                currentUser.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
+                currentUser.LastName = dataset.Tables[0].Rows[0]["LastName"].ToString();
+                currentUser.Address = dataset.Tables[0].Rows[0]["Address"].ToString();
+                currentUser.PhoneNumber = Int32.Parse(dataset.Tables[0].Rows[0]["PhoneNumber"].ToString());
+                currentUser.City = dataset.Tables[0].Rows[0]["City"].ToString();
+                currentUser.State = dataset.Tables[0].Rows[0]["State"].ToString();
+                currentUser.Zipcode = Int32.Parse(dataset.Tables[0].Rows[0]["Email"].ToString());
+
+                objCommand.Parameters.Clear();
+
+                return currentUser;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public User PasswordRecovery(string email)
+        {
+            User currentUser = new User();
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -101,66 +150,26 @@ namespace PhillyPhreshPropertiesLibrary
 
                 objCommand.Parameters.Clear();
 
-                return true;
+                return currentUser;
             }
             catch
             {
-                return false;
+                return null;
             }
         }//end PasswordRecovery()
 
-        //method returns true if user has been found and false if user is not found or error occurred
-        public bool GetUser(string email, string password)
+        public bool AddShowing(string email, string buyer, string agent, string address, string city, string time, DateTime date)
         {
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
-                objCommand.Parameters.AddWithValue("thePassword", password);
-
-                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
-                currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
-                currentUser.Password = dataset.Tables[0].Rows[0]["Password"].ToString();
-                currentUser.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
-                currentUser.LastName = dataset.Tables[0].Rows[0]["LastName"].ToString();
-                //wait before finishing
-                //how are we sending user data to each page
-
-                objCommand.Parameters.Clear();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }// end GetUser()
-
-        public bool AddShowing(string email, string buyer, string agent, string address, string time, DateTime date)
-        {
-            /*
-             CREATE PROCEDURE [dbo].TP_AddShowing
-	            @theEmail VARCHAR(MAX),
-                @theBuyer VARCHAR(MAX),
-                @theAgent VARCHAR(MAX),
-                @theAddress VARCHAR(MAX),
-                @theDate DATETIME,
-                @theTime VARCHAR(50)
-            AS
-	            INSERT INTO TP_Showings (Email, Buyer, Agent, Address, Date, Time)
-                VALUES (@theEmail, @theBuyer, @theAgent, @theAddress, @theDate, @theTime)
-            RETURN 0
-             */
-            try
-            {
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_Showings";
+                objCommand.CommandText = "TP_AddShowing";
 
                 objCommand.Parameters.AddWithValue("@theEmail", email);
                 objCommand.Parameters.AddWithValue("@theBuyer", buyer);
                 objCommand.Parameters.AddWithValue("@theAgent", agent);
                 objCommand.Parameters.AddWithValue("@theAddress", address);
+                objCommand.Parameters.AddWithValue("@theCity", city);
                 objCommand.Parameters.AddWithValue("@theDate", date);
                 objCommand.Parameters.AddWithValue("@theTime", time);
 
@@ -175,14 +184,13 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }//end AddShowing()
 
-        public bool LoadShowings(string email, string agent, string buyer, string property, string time, DateTime date)
-        {
+        public DataSet LoadBuyerShowings(string email)
+        {// change procedure to remove agent
             /*
-             CREATE PROCEDURE [dbo].TP_LoadShowings
-	            @theEmail VARCHAR(MAX),
-                @theAgent VARCHAR(MAX)
+             CREATE PROCEDURE [dbo].TP_LoadBuyerShowings
+	            @theEmail VARCHAR(MAX)
             AS
-	            SELECT * FROM TP_Showings WHERE Email= @theEmail and Agent= @theAgent
+	            SELECT * FROM TP_Showings WHERE Email= @theEmail
             RETURN 0
              */
             try
@@ -190,23 +198,77 @@ namespace PhillyPhreshPropertiesLibrary
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_LoadShowings";
                 objCommand.Parameters.AddWithValue("theEmail", email);
-                objCommand.Parameters.AddWithValue("theAgent", agent);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
-                currentUser.Email = dataset.Tables[0].Rows[0]["Buyer"].ToString();
-                currentUser.Password = dataset.Tables[0].Rows[0]["Address"].ToString();
-                currentUser.FirstName = dataset.Tables[0].Rows[0]["Date"].ToString();
-                currentUser.LastName = dataset.Tables[0].Rows[0]["Time"].ToString();
 
                 objCommand.Parameters.Clear();
 
-                return true;
+                return dataset;
             }
             catch
             {
-                return false;
+                return null;
             }
-        }//end LoadShowings
+        }//end LoadBuyerShowings()
+
+        public DataSet LoadAgentShowings(string agent)
+        {// change procedure to remove agent
+            /*
+             CREATE PROCEDURE [dbo].TP_LoadAgentShowings
+	            @theAgent VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_Showings WHERE Agent= @theAgent
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_LoadAgentShowings";
+                objCommand.Parameters.AddWithValue("theAgent", agent);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                objCommand.Parameters.Clear();
+
+                return dataset;
+            }
+            catch
+            {
+                return null;
+            }
+        }//end LoadAgentShowings
+
+        public User GetAgent(string city)
+        {
+            User agent = new User();
+            /*
+             CREATE PROCEDURE [dbo].TP_GetAgent
+	            @theCity VARCHAR(MAX),
+                @theType VARCHAR(MAX)
+            AS
+	            SELECT * FROM TP_Users WHERE AccountType= @theType and City= @theCity
+            RETURN 0
+             */
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAgent";
+                objCommand.Parameters.AddWithValue("theCity", city);
+                objCommand.Parameters.AddWithValue("theType", "Agent");
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                agent.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
+                agent.LastName = dataset.Tables[0].Rows[0]["LastName"].ToString();
+
+                objCommand.Parameters.Clear();
+
+                return agent;
+            }
+            catch
+            {
+                return null;
+            }
+        }//end GetAgent()
     }
 }
 

@@ -10,7 +10,8 @@ using System.Net;
 using System.Data;
 using Utilities;
 using PhillyPhreshPropertiesLibrary;
-using PhillyPhreshPropertiesAPI;
+
+//using PhillyPhreshPropertiesAPI;
 
 
 
@@ -52,9 +53,9 @@ namespace PhillyPhreshProperties
             propertyCell.Visible = false;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void scheduleShowingBtn_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ShowingUser.aspx");
         }
 
         protected void searchForHomesByCityAndPrice_Click(object sender, EventArgs e)
@@ -138,6 +139,7 @@ namespace PhillyPhreshProperties
             minmumPricetxt.Text = "";
             maximumPricetxt.Text = "";
         }
+
     }
 
       

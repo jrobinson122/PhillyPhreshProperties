@@ -16,9 +16,9 @@
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
-                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-danger" Text="Search" />
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-info" Text="Search" />
                     <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
-                    <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" OnClick="btnLogout_Click" />
+                    <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" />
                 </div>
             </nav>
             <h2 class="text-center display-3">Philly Phresh Properties</h2>
@@ -37,16 +37,16 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lblBuyer" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Buyer")%>" />
+                                    <asp:Label ID="lblBuyer" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Buyer")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Address")%>" />
+                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Address")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Date")%>" />
+                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Date")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Time")%>" />
+                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Time")%>' />
                                 </td>
                             </tr>
                         </ItemTemplate>

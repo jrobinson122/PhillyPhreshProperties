@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,8 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Home.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="StoredProcedures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,24 +55,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\PhillyPhreshPropertiesLibrary.dll" />
-    <Content Include="bin\Debug\PhillyPhreshPropertiesLibrary.pdb" />
-    <Content Include="bin\Debug\Utilities.dll" />
-    <Content Include="bin\Debug\Utilities.pdb" />
-    <Content Include="obj\Debug\PhillyPhreshPropertiesLibrary.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\PhillyPhreshPropertiesLibrary.dll" />
-    <Content Include="obj\Debug\PhillyPhreshPropertiesLibrary.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\PhillyPhreshPropertiesLibrary.csproj.AssemblyReference.cache" />
-    <None Include="obj\Debug\PhillyPhreshPropertiesLibrary.csproj.CopyComplete" />
-    <None Include="obj\Debug\PhillyPhreshPropertiesLibrary.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Release\build.force" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\PhillyPhreshPropertiesLibrary.csproj.AssemblyReference.cache" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="obj\Release\TempPE\" />
