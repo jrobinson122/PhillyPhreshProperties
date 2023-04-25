@@ -52,7 +52,7 @@
 
                 <br />
             </div>
-            <asp:Button ID="scheduleShowingBtn" runat="server" Text="Schedule House Showing" />
+            <asp:Button ID="scheduleShowingBtn" runat="server" Text="Schedule House Showing" OnClick="scheduleShowingBtn_Click" />
             <asp:Button ID="displayHomesBtn" runat="server" Text="Display Homes" />
             <asp:GridView ID="gvHomes" runat="server">
                <%-- <Columns>
@@ -72,6 +72,7 @@
             </asp:GridView>
             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         </div>
+        
     </form>
 </body>
 </html>

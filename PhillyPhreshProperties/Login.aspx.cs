@@ -30,16 +30,25 @@ namespace PhillyPhreshProperties
 
             if (!lblError.Visible)
             {
-                procedure.GetUser();
+                user= procedure.GetUser(txtEmail.Text, txtPassword.Text);
 
-                if(procedure.GetUser())
+                if(user != null)
                 {                    
                     if (chkSaveLoginInfo.Checked)
                     {
                         Response.Cookies["authUserCookie"]["email"] = user.Email;
                         Response.Cookies["authUserCookie"]["password"] = user.Password;
                     }
-                    Response.Redirect("LandingPage.aspx");
+
+                    if(user.AccountType == "Buyer")
+                    {
+                        Response.Redirect("Dashboard-User.aspx");
+                    }
+                    else if(user.AccountType == "Agent" || user.AccountType == "Seller")
+                    {
+                        Response.Redirect("Dashboard-Agent.aspx");
+                    }
+                    
                 }
                 
             }
@@ -57,9 +66,9 @@ namespace PhillyPhreshProperties
             else
             {
                 lblError.Visible = false;
-                user.PasswordRecovery();
+                user= procedure.PasswordRecovery(txtEmail.Text);
 
-                if (!user.PasswordRecovery())
+                if (user == null)
                 {
                     InputError("Your account was not found. Please check email for spelling errors and try agian.");
                 }

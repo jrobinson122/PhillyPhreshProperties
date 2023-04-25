@@ -16,20 +16,63 @@
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
-                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-danger" Text="Search" />
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-info" Text="Search" />
                     <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
-                    <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" OnClick="btnLogout_Click" />
+                    <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" />
                 </div>
             </nav>
 
             <h2 class="text-center display-3">Philly Phresh Properties</h2>
             <h4 class="text-center display-4">Schedule a home showing below.</h4>
 
+            <div id="scheduling" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+                <div class="row gx-3 my-1 ">
+                    <div class="col-md-6">
+                        <asp:Label ID="lblAddress" runat="server" CssClass="col-form-label" Text="Address: "/>
+                        <asp:Textbox ID="txtAddress" runat="server" CssClass="col-form-label" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lblCity" runat="server" CssClass="col-form-label" Text="City: "/>
+                        <asp:Textbox ID="txtCity" runat="server" CssClass="col-form-label" />
+                    </div>
+                </div>
+                <div class="row my-1 ">
+                    <div class="col-auto">
+                        <asp:Label ID="lblSchedule" runat="server" CssClass="form-label">Select a preferred date and time:</asp:Label>
+       
+                        <asp:DropDownList ID="ddlDate" runat="server" CssClass="form-select">
+                            <asp:ListItem Text="" Value="0"/>
+                            <asp:ListItem Text="Tomorrow" Value="1" />
+                            <asp:ListItem Text="Two days from today" Value="2" />
+                            <asp:ListItem Text="Three days from today" Value="3" />
+                            <asp:ListItem Text="Four days from today" Value="4" />
+                            <asp:ListItem Text="Five days from today" Value="5" />
+                            <asp:ListItem Text="Week from today" Value="6" />
+                        </asp:DropDownList>
+       
+                        <asp:DropDownList ID="ddlTime" runat="server" CssClass="form-select my-2">
+                            <asp:ListItem Text="" Value="0"/>
+                            <asp:ListItem Text="1 PM" Value="1"/>
+                            <asp:ListItem Text="2 PM" Value="2"/>
+                            <asp:ListItem Text="3 PM" Value="3"/>
+                            <asp:ListItem Text="4 PM" Value="4"/>
+                            <asp:ListItem Text="5 PM" Value="5"/>
+                            <asp:ListItem Text="6 PM" Value="6"/>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                
+                <asp:Button ID="btnSchedule" runat="server" Text="Schedule" CssClass="btn btn-info align-content-center" OnClick="btnSchedule_Click" />
+                <asp:Label ID="lblError" runat="server" Visible="false" CssClass="my-2 text-warning align-content-center"/>
+
+            </div><%--end scheduling div--%>
+
             <div id="showings" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
                 <table class="table">
                     <tr>
                         <th>Agent</th>
                         <th>Property</th>
+                        <th>City</th>
                         <th>Date</th>
                         <th>Time</th>
                     </tr>
@@ -37,16 +80,19 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Agent")%>" />
+                                    <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Agent")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Address")%>" />
+                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Address")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Date")%>" />
+                                    <asp:Label ID="lblCity" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "City")%>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text="<%# DataBinder.Eval(Container.DataItem, "Time")%>" />
+                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Date")%>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Time")%>' />
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -54,59 +100,9 @@
                 </table>
             </div><%--end showings div--%>
 
-            <div class="row my-1 ">
-                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info" Text="Exit"/>
-            </div>
-
-            <div id="scheduling" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
-
-                <%--use modal popup window to show directly from Search page with elements created below--%>
-
-                <asp:Panel ID="pnlModal" runat="server" Width="500px">
-                    <div class="row gx-5 my-1 ">
-                        <div class="col-md-4">
-                            <asp:Label ID="lblAddress" runat="server" CssClass="col-form-label" Text="Address: "/>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:Label ID="lblCity" runat="server" CssClass="col-form-label" Text="City: "/>                        
-                        </div>
-                        <div class="col-md-4">
-                            <asp:Label ID="lblAgent" runat="server" CssClass="col-form-label" Text="Agent: "/>
-                        </div>
-                        
-                    </div>
-                    <div class="row my-1 ">
-                        <div class="col-auto">
-                            <asp:Label ID="lblSchedule" runat="server" CssClass="form-label">Select a preferred date and time:</asp:Label>
-
-                            <asp:DropDownList ID="ddlDate" runat="server" CssClass="form-select">
-                                <asp:ListItem Text="" Value="0"/>
-                                <asp:ListItem Text="Tomorrow" Value="1" />
-                                <asp:ListItem Text="Two days from today" Value="2" />
-                                <asp:ListItem Text="Three days from today" Value="3" />
-                                <asp:ListItem Text="Four days from today" Value="4" />
-                                <asp:ListItem Text="Five days from today" Value="5" />
-                                <asp:ListItem Text="Week from today" Value="6" />
-                            </asp:DropDownList>
-
-                            <asp:DropDownList ID="ddlTime" runat="server" CssClass="form-select">
-                                <asp:ListItem Text="" Value="0"/>
-                                <asp:ListItem Text="1 PM" Value="1"/>
-                                <asp:ListItem Text="2 PM" Value="2"/>
-                                <asp:ListItem Text="3 PM" Value="3"/>
-                                <asp:ListItem Text="4 PM" Value="4"/>
-                                <asp:ListItem Text="5 PM" Value="5"/>
-                                <asp:ListItem Text="6 PM" Value="6"/>
-                            </asp:DropDownList>
-                        </div>
-                    </div><%--end row--%>
-
-                    <asp:Button ID="btnSchedule" runat="server" Text="Schedule" CssClass="btn btn-info align-content-center" OnClick="btnSchedule_Click" />
-
-                </asp:Panel>
-            </div><%--end scheduling div--%>
-
-            <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlId="btnSchedule" PopupControlID="pnlModal" OkControlID="OKButton" />
+            <div class="row my-1 align-content-center">
+                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50" Text="Exit"/>
+            </div>                
 
         </div>
     </form>

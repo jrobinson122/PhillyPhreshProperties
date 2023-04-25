@@ -16,7 +16,7 @@
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
-                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-danger" Text="Search" />
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-info" Text="Search" />
                     <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
                     <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" OnClick="btnLogout_Click" />
                 </div>
@@ -26,6 +26,34 @@
             <%--would need to query db to access and update house table--%>
             <%--match the city of the house to the city of the agent--%>
             <%--one agent per city--%>
+            <%--use SOAP to file gvReviews--%>
+
+            <div id="dashContent" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+                <asp:GridView ID="gvHomes" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="" HeaderText=""/>
+                        <asp:BoundField DataField="" HeaderText=""/>
+                        <asp:BoundField DataField="" HeaderText=""/>
+                        <asp:BoundField DataField="" HeaderText=""/>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="btnSelect" runat="server" CssClass="btn btn-outline-info"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <br />
+
+                <asp:GridView ID="gvReviews" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="" HeaderText="Buyer"/>
+                        <asp:BoundField DataField="" HeaderText="Property"/>
+                        <asp:BoundField DataField="" HeaderText="Review"/>
+                        <asp:BoundField DataField="" HeaderText="Rating"/>
+                    </Columns>
+                </asp:GridView>
+
+            </div>
 
         </div>
     </form>
