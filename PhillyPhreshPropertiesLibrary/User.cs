@@ -28,6 +28,7 @@ namespace PhillyPhreshPropertiesLibrary
         private string answer2 = "";
         private string securityQuestion3 = "";
         private string answer3 = "";
+        public bool isVerified;
 
         //database connection
         DBConnect db = new DBConnect();
@@ -77,10 +78,10 @@ namespace PhillyPhreshPropertiesLibrary
 
                 dataset = db.GetDataSetUsingCmdObj(objCommand);
                 userID = dataset.Tables[0].Rows[0]["UserId"].ToString();
-                email= dataset.Tables[0].Rows[0]["Email"].ToString();
-                password= dataset.Tables[0].Rows[0]["Password"].ToString();
-                firstname= dataset.Tables[0].Rows[0]["FirstName"].ToString();
-                lastname= dataset.Tables[0].Rows[0]["LastName"].ToString();
+                email = dataset.Tables[0].Rows[0]["Email"].ToString();
+                password = dataset.Tables[0].Rows[0]["Password"].ToString();
+                firstname = dataset.Tables[0].Rows[0]["FirstName"].ToString();
+                lastname = dataset.Tables[0].Rows[0]["LastName"].ToString();
                 //wait before finishing
                 //how are we sending user data to each page
 
@@ -108,7 +109,7 @@ namespace PhillyPhreshPropertiesLibrary
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_ConfirmUser";
                 objCommand.Parameters.AddWithValue("theEmail", email);
-                
+
                 dataset = db.GetDataSetUsingCmdObj(objCommand);
                 securityQuestion1 = dataset.Tables[0].Rows[0]["SecurityQuestion1"].ToString();
                 answer1 = dataset.Tables[0].Rows[0]["Answer1"].ToString();
@@ -150,7 +151,7 @@ namespace PhillyPhreshPropertiesLibrary
                 return false;
             }
 
-            
+
         }//end CheckSecurityAnswer()
 
         //getters and setters
@@ -206,75 +207,4 @@ namespace PhillyPhreshPropertiesLibrary
         { get { return answer3; } set { answer3 = value; } }
 
     }
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace PhillyPhreshPropertiesLibrary
-//{
-//    class User
-//    {
-//        string email;
-//        string password;
-//        string firstName;
-//        string lastName;
-//        string address;
-//        string city;
-//        string state;
-//        string zip;
-//        string phoneNumber;
-
-
-//        public User()
-//        {
-
-//        }
-
-
-//        public string Email
-//        {
-//            get { return email; }
-//            set { email = value; }
-//        }
-//        public string Password
-//        {
-//            get { return password; }
-//            set { password = value; }
-//        }
-//        public string FirstName
-//        {
-//            get { return firstName; }
-//            set { firstName = value; }
-//        }
-//        public string LastName
-//        {
-//            get { return lastName; }
-//            set { lastName = value; }
-//        }
-//        public string Address
-//        {
-//            get { return address; }
-//            set { address = value; }
-//        }
-//        public string City
-//        {
-//            get { return city; }
-//            set { city = value; }
-//        }
-//        public string State
-//        {
-//            get { return state; }
-//            set { state = value; }
-//        }
-//        public string Zip
-//        {
-//            get { return zip; }
-//            set { zip = value; }
-//        }
-//        public string PhoneNumber
-//        {
-//            get { return phoneNumber; }
-//            set { phoneNumber = value; }
-//        }
-//    }
 }

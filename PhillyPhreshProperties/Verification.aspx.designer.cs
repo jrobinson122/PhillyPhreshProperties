@@ -11,25 +11,34 @@ namespace PhillyPhreshProperties
 {
 
 
-    public partial class ManageHomeProfile
+    public partial class Verification
     {
 
         /// <summary>
-        /// form1 control.
+        /// formVerification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formVerification;
 
         /// <summary>
-        /// gvHomes control.
+        /// txtVerificationCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHomes;
+        protected global::System.Web.UI.WebControls.TextBox txtVerificationCode;
+
+        /// <summary>
+        /// btnVerify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerify;
     }
 }

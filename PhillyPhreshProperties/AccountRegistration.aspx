@@ -167,6 +167,14 @@
                         <asp:TextBox ID="txtSecurityAnswer3" runat="server" CssClass="txtbtn"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
+                 <%-- <asp:TableRow>
+                    <asp:TableCell>
+                           Remember Me?
+                            </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:CheckBox ID="chkRemmeberMe" runat="server" />
+                    </asp:TableCell>
+                </asp:TableRow>--%>
             </asp:Table>
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Black" OnClick="btnSubmit_Click" />
             <br />
