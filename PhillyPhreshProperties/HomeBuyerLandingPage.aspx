@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.aspx.cs" Inherits="PhillyPhreshProperties.LandingPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HomeBuyerLandingPage.aspx.cs" Inherits="PhillyPhreshProperties.LandingPage" %>
 
 <!DOCTYPE html>
 
