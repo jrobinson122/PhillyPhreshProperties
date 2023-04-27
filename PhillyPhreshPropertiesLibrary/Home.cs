@@ -8,7 +8,6 @@ namespace PhillyPhreshPropertiesLibrary
 {
    public class Home
     {
-        int homeID;
         string address;
         string city;
         string propertyType;
@@ -21,57 +20,13 @@ namespace PhillyPhreshPropertiesLibrary
         string garage;
         string homeDescription;
         decimal askingPrice;
-        public int realEstateAgentId;
-        double averageRating;
-        string status;
 
         public Home()
         {
-           
-        }
-        public Home(int homeID, string address, string city, string propertyType, int homeSize, int bedrooms, int bathrooms, string amenities, string heatingCooling, int yearBuilt, string garage, string homeDescription, decimal askingPrice, int realEstateAgentId, double averageRating)
-        {
-            HomeID = homeID;
-            Address = address;
-            City = city;          
-            PropertyType = propertyType;
-            HomeSize = homeSize;
-            Bedrooms = bedrooms;
-            Bathrooms = bathrooms;
-            Amenities = amenities;
-            HeatingCooling = heatingCooling;
-            YearBuilt = yearBuilt;
-            Garage = garage;
-            HomeDescription = homeDescription;
-            AskingPrice = askingPrice;
-            RealEstateAgentID = realEstateAgentId;
-            AverageRating = averageRating;
-        }
 
-        public Home(int homeID, string address, string city, string propertyType, int homeSize, int bedrooms, int bathrooms, string amenities, string heatingCooling, int yearBuilt, string garage, string homeDescription, decimal askingPrice, string status)
-        {
-            HomeID = homeID;
-            Address = address;
-            City = city;
-            PropertyType = propertyType;
-            HomeSize = homeSize;
-            Bedrooms = bedrooms;
-            Bathrooms = bathrooms;
-            Amenities = amenities;
-            HeatingCooling = heatingCooling;
-            YearBuilt = yearBuilt;
-            Garage = garage;
-            HomeDescription = homeDescription;
-            AskingPrice = askingPrice;
-            Status = status;
         }
 
 
-        public int HomeID
-        {
-            get { return homeID; }
-            set { homeID = value; }
-        }
         public string Address
         {
             get { return address; }
@@ -132,21 +87,6 @@ namespace PhillyPhreshPropertiesLibrary
         {
             get { return askingPrice; }
             set { askingPrice = value; }
-        }
-        public int RealEstateAgentID
-        {
-            get { return realEstateAgentId; }
-            set { realEstateAgentId = value; }
-        }
-        public double AverageRating
-        {
-            get { return averageRating; }
-            set { averageRating = value; }
-        }
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
         }
 
 
