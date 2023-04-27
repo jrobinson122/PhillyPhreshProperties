@@ -5,9 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PhillyPhreshPropertiesLibrary;
-using Utilities;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace PhillyPhreshProperties
 {
@@ -67,7 +64,7 @@ namespace PhillyPhreshProperties
                 lblMessage.Text += "Please enter your first name. </br>";
                 flag = false;
             }
-            else if (txtRegisterFirstName.Text.All(Char.IsLetter) == false)
+            else if(txtRegisterFirstName.Text.All(Char.IsLetter) == false)
             {
                 lblMessage.Text += "First name must only be letters. </br>";
             }
@@ -114,19 +111,19 @@ namespace PhillyPhreshProperties
             }
 
 
-            //if (string.IsNullOrWhiteSpace(txtRegisterState.Text))
-            //{
-            //    lblMessage.Text += "Please enter your last name. </br>";
-            //    flag = false;
-            //}
-            //else if (txtRegisterState.Text.Length != 2)
-            //{
-            //    lblMessage.Text += "Please enter a valid state. </br";
-            //}
-            //else
-            //{
-            //    state = txtRegisterState.Text;
-            //}
+            if (string.IsNullOrWhiteSpace(txtRegisterState.Text))
+            {
+                lblMessage.Text += "Please enter your last name. </br>";
+                flag = false;
+            }
+            else if(txtRegisterState.Text.Length != 2)
+            {
+                lblMessage.Text += "Please enter a valid state. </br";
+            }
+            else
+            {
+                state = txtRegisterState.Text;
+            }
 
 
             if (string.IsNullOrWhiteSpace(txtRegisterZipCode.Text))
@@ -134,12 +131,12 @@ namespace PhillyPhreshProperties
                 lblMessage.Text += "Please enter your zip code. </br>";
                 flag = false;
             }
-            else if (txtRegisterZipCode.Text.Length != 5)
+            else if(txtRegisterZipCode.Text.Length != 5)
             {
                 lblMessage.Text += "Zip code must be 5 digits long. </br>";
                 flag = false;
             }
-            else if (txtRegisterZipCode.Text.All(char.IsDigit) == false)
+            else if(txtRegisterZipCode.Text.All(char.IsDigit) == false)
             {
                 lblMessage.Text += "Zip code must only be integers. </br>";
                 flag = false;
@@ -198,24 +195,15 @@ namespace PhillyPhreshProperties
                 answer3 = txtSecurityAnswer3.Text;
             }
 
-            if (flag == true)
+            if(flag == true)
             {
-                //if (chkRemmeberMe.Checked)
-                //{
-                //    HttpCookie loginIDCookie = new HttpCookie("LoginID");
-                //    loginIDCookie.Value = email;
-                //    loginIDCookie.Expires = DateTime.Now.AddDays(7);
-                //    Response.Cookies.Add(loginIDCookie);
-                //}
-
-                if (procedures.AddUser(email, password, firstname, lastname, address, city, state, zipcode, phoneNumber, accountType, securityQuestion1, answer1, securityQuestion2, answer2, securityQuestion3, answer3) == true)
+                if(procedures.AddUser(email,password,firstname,lastname,address,city,state,zipcode,phoneNumber, securityQuestion1, answer1, securityQuestion2, answer2, securityQuestion3, answer3) == true)
                 {
                     lblMessage.Text += "New user added to Philly Phresh Properties!";
-                    Response.Redirect("Verification.aspx");
                 }
                 else
                 {
-                    lblMessage.Text += "error adding new user to Philly Phresh Properties.";
+                    lblMessage.Text += "There was an error adding user";
                 }
             }
         }
