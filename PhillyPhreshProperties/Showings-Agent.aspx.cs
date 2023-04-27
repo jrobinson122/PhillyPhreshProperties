@@ -8,15 +8,23 @@ using PhillyPhreshPropertiesLibrary;
 
 namespace PhillyPhreshProperties
 {
-    public partial class Showing_Agent : System.Web.UI.Page
+    public partial class Showings_Agent : System.Web.UI.Page
     {
         StoredProcedures procedure = new StoredProcedures();
+        User agent = new User();
+        string email;
+        string type;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //Set the datasource of the Repeater control and bind the data
-                rptShowings.DataSource = procedure.LoadAgentShowings("Max Goof");  //i need to send the customer email and the agent name as arguments;
+                email = Session["Email"].ToString();
+                type = Session["AccountType"].ToString();
+                agent = procedure.LoadUser(email, type);
+                string name = agent.FirstName + " " + agent.LastName;
+
+                rptShowings.DataSource = procedure.LoadAgentShowings(name);
                 rptShowings.DataBind();
             }
 

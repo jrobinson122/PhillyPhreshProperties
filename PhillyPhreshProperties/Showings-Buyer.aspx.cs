@@ -8,32 +8,34 @@ using PhillyPhreshPropertiesLibrary;
 
 namespace PhillyPhreshProperties
 {
-    public partial class ShowingUser : System.Web.UI.Page
+    public partial class Showings_Buyer : System.Web.UI.Page
     {
         StoredProcedures procedure = new StoredProcedures();
         User user = new User();
-        private bool success= false;
+        DateTime date = DateTime.Today;
+        string time = "";
+        string agent;
+        string buyer;
+        string email;
+        string type;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //use email passed in from session obj
-                rptShowings.DataSource = procedure.LoadBuyerShowings("testUser1@gmail.com");
-                rptShowings.DataBind();
-            }
-            //use ajax to update just the repeater event though that might be too simple for him
-            
+                email = Session["Email"].ToString();
+                type = Session["AccountType"].ToString();
+
+                user = procedure.LoadUser(email, type);
+                buyer = user.FirstName + " " + user.LastName;
+                agent = procedure.GetAgent(txtCity.Text).FirstName + " " + procedure.GetAgent(txtCity.Text).LastName;
+
+                Response.Write(procedure.LoadBuyerShowings(user.Email).ToString());
+            }            
         }
 
         protected void btnSchedule_Click(object sender, EventArgs e)
         {
-            DateTime date= DateTime.Today;
-            string time= "";
-            string agent;
-            string buyer;
-            string email;
-
             Validation();
 
             if (!lblError.Visible)
@@ -88,22 +90,24 @@ namespace PhillyPhreshProperties
                     time = ddlTime.Text;
                 }
 
-                agent= procedure.GetAgent(txtCity.Text).FirstName + procedure.GetAgent(txtCity.Text).LastName;
-                //get email and buyer name from session
-                success= procedure.AddShowing(email, buyer, agent, txtAddress.Text, txtCity.Text,time, date);
-
-                if(success)
+                
+                if(procedure.AddShowing(email, buyer, agent, txtAddress.Text, txtCity.Text, time, date))
                 {
-                    procedure.AddShowing(email, buyer, agent, txtAddress.Text, txtCity.Text, time, date);
+                    
                 }
                 else
                 {
                     InputError("The showing was not scheduled");
                 }
-            }
-            
-            
-        }
+            }  
+        }//end btnSchedule_Click()
+
+        protected void btnExit_Click(object sender, EventArgs e)
+        {
+            Session["Email"]= email;
+            Session["AccountType"]= type;
+            Response.Redirect("SearchForHomes.aspx");
+        }//end  btnExit_Click()
 
         private void Validation()
         {
@@ -135,5 +139,7 @@ namespace PhillyPhreshProperties
             lblError.Text = error;
             lblError.Visible = true;
         }//end InputError()
+
+        
     }
 }

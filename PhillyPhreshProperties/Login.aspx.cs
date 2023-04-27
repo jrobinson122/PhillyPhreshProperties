@@ -33,7 +33,9 @@ namespace PhillyPhreshProperties
                 user= procedure.GetUser(txtEmail.Text, txtPassword.Text);
 
                 if(user != null)
-                {                    
+                {
+                    Session["Email"] = user.Email;
+                    Session["AccountType"] = user.AccountType;
                     if (chkSaveLoginInfo.Checked)
                     {
                         Response.Cookies["authUserCookie"]["email"] = user.Email;
@@ -42,7 +44,7 @@ namespace PhillyPhreshProperties
 
                     if(user.AccountType == "Buyer")
                     {
-                        Response.Redirect("Dashboard-User.aspx");
+                        Response.Redirect("SearchForHomes.aspx");
                     }
                     else if(user.AccountType == "Agent" || user.AccountType == "Seller")
                     {

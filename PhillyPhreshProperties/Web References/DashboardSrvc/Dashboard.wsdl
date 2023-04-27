@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="LoadHouses">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoadHousesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadHousesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadReviews">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoadReviewsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadReviewsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoadHousesSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadHouses" />
+  </wsdl:message>
+  <wsdl:message name="LoadHousesSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadHousesResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadReviewsSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadReviews" />
+  </wsdl:message>
+  <wsdl:message name="LoadReviewsSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadReviewsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DashboardSoap">
+    <wsdl:operation name="LoadHouses">
+      <wsdl:input message="tns:LoadHousesSoapIn" />
+      <wsdl:output message="tns:LoadHousesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadReviews">
+      <wsdl:input message="tns:LoadReviewsSoapIn" />
+      <wsdl:output message="tns:LoadReviewsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DashboardSoap" type="tns:DashboardSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoadHouses">
+      <soap:operation soapAction="http://tempuri.org/LoadHouses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadReviews">
+      <soap:operation soapAction="http://tempuri.org/LoadReviews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DashboardSoap12" type="tns:DashboardSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoadHouses">
+      <soap12:operation soapAction="http://tempuri.org/LoadHouses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadReviews">
+      <soap12:operation soapAction="http://tempuri.org/LoadReviews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Dashboard">
+    <wsdl:port name="DashboardSoap" binding="tns:DashboardSoap">
+      <soap:address location="http://localhost:57086/Dashboard.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DashboardSoap12" binding="tns:DashboardSoap12">
+      <soap12:address location="http://localhost:57086/Dashboard.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
