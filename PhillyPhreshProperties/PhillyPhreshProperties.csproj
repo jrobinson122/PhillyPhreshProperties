@@ -75,9 +75,8 @@
     <Content Include="Dashboard-Agent.aspx" />
     <Content Include="Dashboard.asmx" />
     <Content Include="HomeSeller-AgentProfile.aspx" />
-    <Content Include="Showing-Agent.aspx" />
-    <Content Include="ShowingUser.aspx" />
-    <Content Include="Dashboard-User.aspx" />
+    <Content Include="Showings-Agent.aspx" />
+    <Content Include="Showings-Buyer.aspx" />
     <Content Include="HomeSeller-AgentProfile.aspx" />
     <Content Include="Images\PPPlogo.png" />
     <Content Include="LandingPage.aspx" />
@@ -85,6 +84,11 @@
     <Content Include="ManageHomeProfile-Agent.aspx" />
     <Content Include="PPPStyling.css" />
     <Content Include="SearchForHomes.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\DashboardSrvc\Dashboard.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,26 +124,24 @@
     <Compile Include="HomeSeller-AgentProfile.aspx.designer.cs">
       <DependentUpon>HomeSeller-AgentProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Showing-Agent.aspx.cs">
-      <DependentUpon>Showing-Agent.aspx</DependentUpon>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Showings-Agent.aspx.cs">
+      <DependentUpon>Showings-Agent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Showing-Agent.aspx.designer.cs">
-      <DependentUpon>Showing-Agent.aspx</DependentUpon>
+    <Compile Include="Showings-Agent.aspx.designer.cs">
+      <DependentUpon>Showings-Agent.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShowingUser.aspx.cs">
-      <DependentUpon>ShowingUser.aspx</DependentUpon>
+    <Compile Include="Showings-Buyer.aspx.cs">
+      <DependentUpon>Showings-Buyer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShowingUser.aspx.designer.cs">
-      <DependentUpon>ShowingUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard-User.aspx.cs">
-      <DependentUpon>Dashboard-User.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard-User.aspx.designer.cs">
-      <DependentUpon>Dashboard-User.aspx</DependentUpon>
+    <Compile Include="Showings-Buyer.aspx.designer.cs">
+      <DependentUpon>Showings-Buyer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -163,9 +165,19 @@
     <Compile Include="SearchForHomes.aspx.designer.cs">
       <DependentUpon>SearchForHomes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Web References\DashboardSrvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Web References\DashboardSrvc\Dashboard.wsdl" />
+    <None Include="Web References\DashboardSrvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -183,7 +195,25 @@
       <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:57086/Dashboard.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\DashboardSrvc\</RelPath>
+      <UpdateFromURL>http://localhost:57086/Dashboard.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PhillyPhreshProperties_DashboardSrvc_Dashboard</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

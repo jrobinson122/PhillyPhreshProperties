@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Globalization;
 
 namespace PhillyPhreshPropertiesLibrary
 {
@@ -81,8 +83,8 @@ namespace PhillyPhreshPropertiesLibrary
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
-                objCommand.Parameters.AddWithValue("thePassword", password);
+                objCommand.Parameters.AddWithValue("@theEmail", email);
+                objCommand.Parameters.AddWithValue("@thePassword", password);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
@@ -106,8 +108,8 @@ namespace PhillyPhreshPropertiesLibrary
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_LoadUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
-                objCommand.Parameters.AddWithValue("theType", type);
+                objCommand.Parameters.AddWithValue("@theEmail", email);
+                objCommand.Parameters.AddWithValue("@theType", type);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 currentUser.Email = dataset.Tables[0].Rows[0]["Email"].ToString();
@@ -117,7 +119,7 @@ namespace PhillyPhreshPropertiesLibrary
                 currentUser.PhoneNumber = Int32.Parse(dataset.Tables[0].Rows[0]["PhoneNumber"].ToString());
                 currentUser.City = dataset.Tables[0].Rows[0]["City"].ToString();
                 currentUser.State = dataset.Tables[0].Rows[0]["State"].ToString();
-                currentUser.Zipcode = Int32.Parse(dataset.Tables[0].Rows[0]["Email"].ToString());
+                currentUser.Zipcode = Int32.Parse(dataset.Tables[0].Rows[0]["Zipcode"].ToString());
 
                 objCommand.Parameters.Clear();
 
@@ -136,7 +138,7 @@ namespace PhillyPhreshPropertiesLibrary
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_ConfirmUser";
-                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.Parameters.AddWithValue("@theEmail", email);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 currentUser.SecurityQuestion1= dataset.Tables[0].Rows[0]["SecurityQuestion1"].ToString();
@@ -184,26 +186,34 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }//end AddShowing()
 
-        public DataSet LoadBuyerShowings(string email)
-        {// change procedure to remove agent
-            /*
-             CREATE PROCEDURE [dbo].TP_LoadBuyerShowings
-	            @theEmail VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_Showings WHERE Email= @theEmail
-            RETURN 0
-             */
+        public ArrayList LoadBuyerShowings(string email)
+        {
+            ArrayList showingsList = new ArrayList();
+            Showings showing= new Showings();
+            var dateInfo = new CultureInfo("en-US");
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_LoadShowings";
-                objCommand.Parameters.AddWithValue("theEmail", email);
+                objCommand.CommandText = "TP_LoadBuyerShowings";
+                objCommand.Parameters.AddWithValue("@theEmail", email);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                foreach (DataRow row in dataset.Tables[0].Rows)
+                {
+                    showing = new Showings {
+                        Agent= row["Agent"].ToString(), 
+                        Address= row["Address"].ToString(), 
+                        City= row["City"].ToString(), 
+                        Time= row["Time"].ToString(), 
+                        Date= DateTime.ParseExact(row["Date"].ToString(), "d", dateInfo)
+                    };
+
+                    showingsList.Add(showing);
+                }
 
                 objCommand.Parameters.Clear();
 
-                return dataset;
+                return showingsList;
             }
             catch
             {
@@ -212,19 +222,13 @@ namespace PhillyPhreshPropertiesLibrary
         }//end LoadBuyerShowings()
 
         public DataSet LoadAgentShowings(string agent)
-        {// change procedure to remove agent
-            /*
-             CREATE PROCEDURE [dbo].TP_LoadAgentShowings
-	            @theAgent VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_Showings WHERE Agent= @theAgent
-            RETURN 0
-             */
+        {
+            //i thought i needed the city to send to the agent rpt
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_LoadAgentShowings";
-                objCommand.Parameters.AddWithValue("theAgent", agent);
+                objCommand.Parameters.AddWithValue("@theAgent", agent);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
 
@@ -241,20 +245,13 @@ namespace PhillyPhreshPropertiesLibrary
         public User GetAgent(string city)
         {
             User agent = new User();
-            /*
-             CREATE PROCEDURE [dbo].TP_GetAgent
-	            @theCity VARCHAR(MAX),
-                @theType VARCHAR(MAX)
-            AS
-	            SELECT * FROM TP_Users WHERE AccountType= @theType and City= @theCity
-            RETURN 0
-             */
+           
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetAgent";
-                objCommand.Parameters.AddWithValue("theCity", city);
-                objCommand.Parameters.AddWithValue("theType", "Agent");
+                objCommand.Parameters.AddWithValue("@theCity", city);
+                objCommand.Parameters.AddWithValue("@theType", "Agent");
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
                 agent.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();

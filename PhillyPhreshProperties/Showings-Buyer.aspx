@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowingUser.aspx.cs" Inherits="PhillyPhreshProperties.ShowingUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Showings-Buyer.aspx.cs" Inherits="PhillyPhreshProperties.Showings_Buyer" %>
 
 <!DOCTYPE html>
 
@@ -8,16 +8,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Home Showing</title>
+    <title>Showings-Buyer</title>
+
+    <script type="text/javascript">
+        var xmlhRequest = new XMLHttpRequest();
+
+        //Show data using an update panel not javascript
+        function loadShowings()
+        {
+            xmlhRequest.open("POST", "Showings-Buyer.aspx", true);
+            xmlhRequest.onreadystatechange = function () {
+                if (xmlhRequest.readyState == 4 && xmlhRequest.status == 200) {
+                    var data = xmlhRequest.responseText;
+                    var html = "<table>" +
+                        "<tr style='font-weight:bold'>" +
+                        "<td> Agent </td>" +
+                        "<td> Property </td>" +
+                        "<td> City </td>" +
+                        "<td> Date </td>" +
+                        "<td> Time </td>" +
+                        "</tr>";
+
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<tr>" + "<td>" + data[i].Agent + "</td>" +
+                            "<td>" + data[i].Address + "</td>" +
+                            "<td>" + data[i].City + "</td>" +
+                            "<td>" + data[i].Date + "</td>" +
+                            "<td>" + data[i].Time + "</td>" +
+                            "</tr>";
+                    }
+                    html += "</table>"
+
+                    document.getElementById("showings").innerHTML = html;
+                }
+            }
+            xmlhRequest.setRequestHeader
+            xmlhRequest.send();
+        }
+        
+    </script>
 </head>
 <body>
-    <form id="formShowingUser" runat="server">
+    <form id="formShowingsBuyer" runat="server">
         <div class="d-block w-50 mx-auto p-2 bg-dark text-white rounded-3">
             <nav class="navbar navbar-expand-md navbar-brand justify-content-center">
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-info" Text="Search" />
-                    <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
+                    <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Showings" />
                     <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" />
                 </div>
             </nav>
@@ -67,41 +105,10 @@
 
             </div><%--end scheduling div--%>
 
-            <div id="showings" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
-                <table class="table">
-                    <tr>
-                        <th>Agent</th>
-                        <th>Property</th>
-                        <th>City</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                    <asp:Repeater ID="rptShowings" runat="server">
-                        <ItemTemplate>
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Agent")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Address")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblCity" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "City")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Date")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Time")%>' />
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </table>
-            </div><%--end showings div--%>
+            <div id="showings" class="flex-column d-flex justify-content-center w-75 mx-auto"> </div><%--end showings div--%>
 
             <div class="row my-1 align-content-center">
-                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50" Text="Exit"/>
+                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50" Text="Exit" OnClick="btnExit_Click"/>
             </div>                
 
         </div>

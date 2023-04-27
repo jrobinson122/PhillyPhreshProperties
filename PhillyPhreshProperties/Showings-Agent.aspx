@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Showing-Agent.aspx.cs" Inherits="PhillyPhreshProperties.Showing_Agent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Showings-Agent.aspx.cs" Inherits="PhillyPhreshProperties.Showings_Agent" %>
 
 <!DOCTYPE html>
 
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Showing</title>
+    <title>Showings-Agent</title>
 </head>
 <body>
     <form id="formShowingAgent" runat="server">
@@ -17,7 +17,7 @@
                 <div class="container-flex">
                     <asp:Button ID="btnHome" runat="server" CssClass="btn btn-outline-info" Text="Home" />
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-info" Text="Search" />
-                    <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Home Showing" />
+                    <asp:Button ID="btnShowing" runat="server" CssClass="btn btn-outline-info" Text="Showings" />
                     <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-info" Text="Logout" />
                 </div>
             </nav>
@@ -55,7 +55,7 @@
             </div><%--end showings div--%>
 
             <div class="row my-1 ">
-                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info" Text="Exit"/>
+                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50 align-content-center" Text="Exit"/>
             </div>            
 
         </div>
