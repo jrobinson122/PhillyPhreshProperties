@@ -116,7 +116,7 @@ namespace PhillyPhreshPropertiesLibrary
                 currentUser.FirstName = dataset.Tables[0].Rows[0]["FirstName"].ToString();
                 currentUser.LastName = dataset.Tables[0].Rows[0]["LastName"].ToString();
                 currentUser.Address = dataset.Tables[0].Rows[0]["Address"].ToString();
-                currentUser.PhoneNumber = Int32.Parse(dataset.Tables[0].Rows[0]["PhoneNumber"].ToString());
+                //currentUser.PhoneNumber = Int32.Parse(dataset.Tables[0].Rows[0]["PhoneNumber"].ToString());
                 currentUser.City = dataset.Tables[0].Rows[0]["City"].ToString();
                 currentUser.State = dataset.Tables[0].Rows[0]["State"].ToString();
                 currentUser.Zipcode = Int32.Parse(dataset.Tables[0].Rows[0]["Zipcode"].ToString());
@@ -166,7 +166,6 @@ namespace PhillyPhreshPropertiesLibrary
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_AddShowing";
-
                 objCommand.Parameters.AddWithValue("@theEmail", email);
                 objCommand.Parameters.AddWithValue("@theBuyer", buyer);
                 objCommand.Parameters.AddWithValue("@theAgent", agent);
@@ -186,11 +185,9 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }//end AddShowing()
 
-        public ArrayList LoadBuyerShowings(string email)
+        public DataSet LoadBuyerShowings(string email)
         {
-            ArrayList showingsList = new ArrayList();
-            Showings showing= new Showings();
-            var dateInfo = new CultureInfo("en-US");
+            
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -198,22 +195,10 @@ namespace PhillyPhreshPropertiesLibrary
                 objCommand.Parameters.AddWithValue("@theEmail", email);
 
                 dataset = objDB.GetDataSetUsingCmdObj(objCommand);
-                foreach (DataRow row in dataset.Tables[0].Rows)
-                {
-                    showing = new Showings {
-                        Agent= row["Agent"].ToString(), 
-                        Address= row["Address"].ToString(), 
-                        City= row["City"].ToString(), 
-                        Time= row["Time"].ToString(), 
-                        Date= DateTime.ParseExact(row["Date"].ToString(), "d", dateInfo)
-                    };
-
-                    showingsList.Add(showing);
-                }
 
                 objCommand.Parameters.Clear();
 
-                return showingsList;
+                return dataset;
             }
             catch
             {
@@ -223,7 +208,6 @@ namespace PhillyPhreshPropertiesLibrary
 
         public DataSet LoadAgentShowings(string agent)
         {
-            //i thought i needed the city to send to the agent rpt
             try
             {
                 objCommand.CommandType = CommandType.StoredProcedure;

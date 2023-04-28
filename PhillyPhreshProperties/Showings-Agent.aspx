@@ -25,7 +25,7 @@
 
             <h4 class="text-center display-4">View your scheduled showings below.</h4>
 
-            <div id="showings" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
+            <div id="showings" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto text-bg-light">
                 <table class="table">
                     <tr>
                         <th>Buyer</th>
@@ -54,8 +54,8 @@
                 </table>
             </div><%--end showings div--%>
 
-            <div class="row my-1 ">
-                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50 align-content-center" Text="Exit"/>
+            <div class="row my-1 justify-content-center">
+                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-25" Text="Exit"/>
             </div>            
 
         </div>

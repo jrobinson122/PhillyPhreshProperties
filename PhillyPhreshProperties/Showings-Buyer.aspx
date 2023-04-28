@@ -13,40 +13,20 @@
     <script type="text/javascript">
         var xmlhRequest = new XMLHttpRequest();
 
-        //Show data using an update panel not javascript
-        function loadShowings()
-        {
+        function loadShowings() {
             xmlhRequest.open("POST", "Showings-Buyer.aspx", true);
             xmlhRequest.onreadystatechange = function () {
                 if (xmlhRequest.readyState == 4 && xmlhRequest.status == 200) {
-                    var data = xmlhRequest.responseText;
-                    var html = "<table>" +
-                        "<tr style='font-weight:bold'>" +
-                        "<td> Agent </td>" +
-                        "<td> Property </td>" +
-                        "<td> City </td>" +
-                        "<td> Date </td>" +
-                        "<td> Time </td>" +
-                        "</tr>";
-
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<tr>" + "<td>" + data[i].Agent + "</td>" +
-                            "<td>" + data[i].Address + "</td>" +
-                            "<td>" + data[i].City + "</td>" +
-                            "<td>" + data[i].Date + "</td>" +
-                            "<td>" + data[i].Time + "</td>" +
-                            "</tr>";
-                    }
-                    html += "</table>"
-
-                    document.getElementById("showings").innerHTML = html;
+                    var data = JSON.parse(xmlhRequest.responseText);
+                    document.getElementById("rptShowings").innerHTML = data;
                 }
             }
-            xmlhRequest.setRequestHeader
+            xmlhRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
             xmlhRequest.send();
         }
-        
-    </script>
+
+</script>
+
 </head>
 <body>
     <form id="formShowingsBuyer" runat="server">
@@ -62,6 +42,7 @@
 
             <h2 class="text-center display-3">Philly Phresh Properties</h2>
             <h4 class="text-center display-4">Schedule a home showing below.</h4>
+
 
             <div id="scheduling" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
                 <div class="row gx-3 my-1 ">
@@ -105,10 +86,39 @@
 
             </div><%--end scheduling div--%>
 
-            <div id="showings" class="flex-column d-flex justify-content-center w-75 mx-auto"> </div><%--end showings div--%>
+            <asp:ScriptManager ID="scrmShwoings" runat="server"></asp:ScriptManager>
+            <div id="showings" class="flex-column d-flex justify-content-center w-75 mx-auto">
+                <div class="row my-1 justify-content-end">
+                    <asp:Button ID="btnRefresh" runat="server" Text="Reresh" CssClass="btn btn-outline-info w-25" OnClick="btnRefresh_Click" />
+                </div>
 
-            <div class="row my-1 align-content-center">
-                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-50" Text="Exit" OnClick="btnExit_Click"/>
+                <asp:UpdatePanel ID="udpShowings" runat="server">
+                    <ContentTemplate>
+                        <asp:Repeater ID="rptShowings" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                <td>
+                                    <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Agent")%>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Address")%>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Date")%>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Time")%>' />
+                                </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+            </div><%--end showings div--%>
+
+            <div class="row my-1 justify-content-center">
+                <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-25" Text="Exit" OnClick="btnExit_Click"/>
             </div>                
 
         </div>

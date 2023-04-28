@@ -41,8 +41,9 @@
 
                 <asp:GridView ID="gvReviews" runat="server" AutoGenerateColumns="false">
                     <Columns>
-                        <asp:BoundField DataField="ReviewerName" HeaderText="Buyer"/>
-                        <asp:BoundField DataField="PriceCommeent" HeaderText="Pricing"/>
+                        <asp:BoundField DataField="ReviewerFirstName" HeaderText="Buyer First Name"/>
+                        <asp:BoundField DataField="ReviewerLastName" HeaderText="Buyer Last Name"/>
+                        <asp:BoundField DataField="PriceComment" HeaderText="Pricing"/>
                         <asp:BoundField DataField="LocationComment" HeaderText="Location"/>
                         <asp:BoundField DataField="HomeComment" HeaderText="House"/>
                         <asp:BoundField DataField="Rating" HeaderText="Rating"/>

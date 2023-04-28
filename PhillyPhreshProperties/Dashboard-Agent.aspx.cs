@@ -17,10 +17,10 @@ namespace PhillyPhreshProperties
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            //email= Session["Email"].ToString();
-            //type= Session["AccountType"].ToString();
+            email= Session["Email"].ToString();
+            type= Session["AccountType"].ToString();
             //session obj to pass needed data to LoadUser
-            agent = procedure.LoadUser("justinJames123@gmail.com", "Agent");
+            agent = procedure.LoadUser(email, type);
 
             //call SOAP service here to load gvHomes
             DashboardSrvc.Dashboard prxyDashboard = new DashboardSrvc.Dashboard();

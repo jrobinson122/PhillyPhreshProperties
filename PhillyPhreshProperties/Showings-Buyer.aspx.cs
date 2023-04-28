@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PhillyPhreshPropertiesLibrary;
+using System.Web.Script.Serialization;
 
 namespace PhillyPhreshProperties
 {
@@ -18,21 +19,31 @@ namespace PhillyPhreshProperties
         string buyer;
         string email;
         string type;
+        bool success = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                email = Session["Email"].ToString();
-                type = Session["AccountType"].ToString();
+            email = "GavinIrons@gmail.com"; //Session["Email"].ToString();
+            type = "Buyer"; //Session["AccountType"].ToString();
 
-                user = procedure.LoadUser(email, type);
-                buyer = user.FirstName + " " + user.LastName;
-                agent = procedure.GetAgent(txtCity.Text).FirstName + " " + procedure.GetAgent(txtCity.Text).LastName;
+            user = procedure.LoadUser(email, type);                
 
-                Response.Write(procedure.LoadBuyerShowings(user.Email).ToString());
-            }            
+            //Response.Write(procedure.LoadBuyerShowings(user.Email).ToString());
+                       
         }
+
+        public string LoadShowings()
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(procedure.LoadBuyerShowings(email));
+        }
+
+        protected void btnRefresh_Click(object sender, EventArgs e)
+        {
+            rptShowings.DataSource = procedure.LoadBuyerShowings(user.Email);
+            rptShowings.DataBind();
+
+        }//end btnRefresh_Click()
 
         protected void btnSchedule_Click(object sender, EventArgs e)
         {
@@ -67,38 +78,44 @@ namespace PhillyPhreshProperties
 
                 if(ddlTime.SelectedValue == "1")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("1").Text;
                 }
                 else if (ddlTime.SelectedValue == "2")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("2").Text;
                 }
                 else if(ddlTime.SelectedValue == "3")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("3").Text;
                 }
                 else if(ddlTime.SelectedValue == "4")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("4").Text;
                 }
                 else if(ddlTime.SelectedValue == "5")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("5").Text;
                 }
                 else if(ddlTime.SelectedValue == "6")
                 {
-                    time = ddlTime.Text;
+                    time = ddlTime.Items.FindByValue("6").Text;
                 }
 
-                
-                if(procedure.AddShowing(email, buyer, agent, txtAddress.Text, txtCity.Text, time, date))
+                buyer = user.FirstName + " " + user.LastName;
+                agent = procedure.GetAgent(txtCity.Text).FirstName + " " + procedure.GetAgent(txtCity.Text).LastName;
+                success = procedure.AddShowing(email, buyer, agent, txtAddress.Text, txtCity.Text, time, date);
+
+                if (success)
                 {
-                    
+                    //show message showing telling buyer the showing was scheduled maybe
                 }
                 else
                 {
                     InputError("The showing was not scheduled");
                 }
+
+                //ScriptManager.RegisterStartupScript(this, GetType(), "loadShowings", "LoadShowings();", true);
+
             }  
         }//end btnSchedule_Click()
 
@@ -141,5 +158,5 @@ namespace PhillyPhreshProperties
         }//end InputError()
 
         
-    }
+    }//end Showing-Buyer class
 }

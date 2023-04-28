@@ -19,12 +19,12 @@ namespace PhillyPhreshProperties
         {
             if (!IsPostBack)
             {
-                email = Session["Email"].ToString();
-                type = Session["AccountType"].ToString();
-                agent = procedure.LoadUser(email, type);
-                string name = agent.FirstName + " " + agent.LastName;
+                //email = Session["Email"].ToString();
+                //type = Session["AccountType"].ToString();
+                //agent = procedure.LoadUser(email, type);
+                //string name = agent.FirstName + " " + agent.LastName;
 
-                rptShowings.DataSource = procedure.LoadAgentShowings(name);
+                rptShowings.DataSource = procedure.LoadAgentShowings("Max Goof");
                 rptShowings.DataBind();
             }
 
