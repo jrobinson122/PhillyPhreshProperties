@@ -10,19 +10,35 @@ using System.Net;
 using System.Data;
 using Utilities;
 using PhillyPhreshPropertiesLibrary;
-
-//using PhillyPhreshPropertiesAPI;
-
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace PhillyPhreshProperties
 {
     public partial class SearchForHomes : System.Web.UI.Page
     {
-            String webApiUrl = "http://localhost:57085/api/Properties/";
-            protected void Page_Load(object sender, EventArgs e)
-            {
-           // Create an HTTP Web Request and get the HTTP Web Response from the server.
+        String webApiUrl = "http://localhost:57085/api/Properties/";
+        User buyer = new User();
+        StoredProcedures procedure = new StoredProcedures();
+        string email;
+        string type;
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //loads user object by using data from the session
+            byte[] emailData = (byte[])Session["Email"];
+            stream = new MemoryStream(emailData);
+            email = (string)formatter.Deserialize(stream);
+
+            byte[] typeData = (byte[])Session["AccountType"];
+            stream = new MemoryStream(typeData);
+            type = (string)formatter.Deserialize(stream);
+
+            buyer = procedure.LoadUser(email, type);
+
+            // Create an HTTP Web Request and get the HTTP Web Response from the server.
             WebRequest request = WebRequest.Create(webApiUrl + "GetHouses/");
             WebResponse response = request.GetResponse();
             // Read the data from the Web Response, which requires working with streams.

@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PhillyPhreshPropertiesLibrary;
 using System.Web.Script.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace PhillyPhreshProperties
 {
@@ -20,11 +22,21 @@ namespace PhillyPhreshProperties
         string email;
         string type;
         bool success = false;
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            email = "GavinIrons@gmail.com"; //Session["Email"].ToString();
-            type = "Buyer"; //Session["AccountType"].ToString();
+            byte[] emailData = (byte[])Session["Email"];
+            stream = new MemoryStream(emailData);
+            email = (string)formatter.Deserialize(stream);
+
+            byte[] typeData = (byte[])Session["AccountType"];
+            stream = new MemoryStream(typeData);
+            type = (string)formatter.Deserialize(stream);
+
+            email = "GavinIrons@gmail.com";
+            type = "Buyer";
 
             user = procedure.LoadUser(email, type);                
 

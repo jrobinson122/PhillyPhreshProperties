@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PhillyPhreshPropertiesLibrary;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace PhillyPhreshProperties
 {
@@ -12,6 +14,10 @@ namespace PhillyPhreshProperties
     {
         User user = new User();
         StoredProcedures procedure = new StoredProcedures();
+        string email;
+        string type;
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,8 +40,17 @@ namespace PhillyPhreshProperties
 
                 if(user != null)
                 {
-                    Session["Email"] = user.Email;
-                    Session["AccountType"] = user.AccountType;
+                    email = user.Email;
+                    type = user.AccountType;
+
+                    formatter.Serialize(stream, email);
+                    byte[] emailData = stream.ToArray();
+                    Session["Email"] = emailData;
+
+                    formatter.Serialize(stream, type);
+                    byte[] typeData = stream.ToArray();
+                    Session["AccountType"] = typeData;
+
                     if (chkSaveLoginInfo.Checked)
                     {
                         Response.Cookies["authUserCookie"]["email"] = user.Email;
