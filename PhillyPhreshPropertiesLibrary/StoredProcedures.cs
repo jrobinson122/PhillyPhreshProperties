@@ -76,6 +76,29 @@ namespace PhillyPhreshPropertiesLibrary
             }
         }
 
+        public Home GetHomeByAddress(string address)
+        {
+            Home home = new Home();
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetHomeByAddress";
+                objCommand.Parameters.AddWithValue("@theAddress", address);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                home.Address = dataset.Tables[0].Rows[0]["Address"].ToString();
+                home.Status = dataset.Tables[0].Rows[0]["Status"].ToString();
+
+                objCommand.Parameters.Clear();
+
+                return home;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public User GetUser(string email, string password)
         {
             User currentUser = new User();
@@ -250,6 +273,80 @@ namespace PhillyPhreshPropertiesLibrary
                 return null;
             }
         }//end GetAgent()
+
+        public bool AddOffer(string buyer, string agent, string address, string city, decimal askingPrice, decimal offer)
+        {
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddOffer";
+                objCommand.Parameters.AddWithValue("@theBuyer", buyer);
+                objCommand.Parameters.AddWithValue("@theAgent", agent);
+                objCommand.Parameters.AddWithValue("@theAddress", address);
+                objCommand.Parameters.AddWithValue("@theCity", city);
+                objCommand.Parameters.AddWithValue("@theAskingPrice", askingPrice);
+                objCommand.Parameters.AddWithValue("@theOffer", offer);
+
+                objDB.DoUpdate(objCommand);
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }//end AddOffer()
+
+        public Offer GetOffer(string buyer, string address)
+        {
+            Offer currentOffer = new Offer();
+
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetOffer";
+                objCommand.Parameters.AddWithValue("@theBuyer", buyer);
+                objCommand.Parameters.AddWithValue("@theAddress", address);
+
+                dataset = objDB.GetDataSetUsingCmdObj(objCommand);
+                currentOffer.Buyer = dataset.Tables[0].Rows[0]["Buyer"].ToString();
+                currentOffer.Agent = dataset.Tables[0].Rows[0]["Agent"].ToString();
+                currentOffer.Address = dataset.Tables[0].Rows[0]["Address"].ToString();
+                currentOffer.City = dataset.Tables[0].Rows[0]["City"].ToString();
+                currentOffer.AskingPrice = decimal.Parse(dataset.Tables[0].Rows[0]["AskingPrice"].ToString());
+                currentOffer.HomeOffer = decimal.Parse(dataset.Tables[0].Rows[0]["Offer"].ToString());
+
+                objCommand.Parameters.Clear();
+
+                return currentOffer;
+            }
+            catch
+            {
+                return null;
+            }
+        }//end GetOffer()
+
+        public bool SetOfferStatus(Offer offer)
+        {
+            try
+            {
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_SetOfferStatus";
+                objCommand.Parameters.AddWithValue("@theBuyer", offer.Buyer);
+                objCommand.Parameters.AddWithValue("@theAddress", offer.Address);
+                objCommand.Parameters.AddWithValue("@theStatus", offer.Accepted);
+
+                objDB.DoUpdate(objCommand);
+                objCommand.Parameters.Clear();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }//ens SetOfferStatus()
     }
 }
 

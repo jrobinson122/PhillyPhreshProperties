@@ -11,88 +11,79 @@ namespace PhillyPhreshProperties
 {
 
 
-    public partial class Showings_Agent
+    public partial class ViewOffers
     {
 
         /// <summary>
-        /// formShowingAgent control.
+        /// lblBuyer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formShowingAgent;
+        protected global::System.Web.UI.WebControls.Label lblBuyer;
 
         /// <summary>
-        /// btnHome control.
+        /// lblAgent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHome;
+        protected global::System.Web.UI.WebControls.Label lblAgent;
 
         /// <summary>
-        /// btnSearch control.
+        /// lblAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// btnShowing control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowing;
+        protected global::System.Web.UI.WebControls.Label lblCity;
 
         /// <summary>
-        /// btnLogout control.
+        /// lblAskingPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::System.Web.UI.WebControls.Label lblAskingPrice;
 
         /// <summary>
-        /// rptShowings control.
+        /// lblOffer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptShowings;
+        protected global::System.Web.UI.WebControls.Label lblOffer;
 
         /// <summary>
-        /// divOffer control.
+        /// btnAccept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOffer;
+        protected global::System.Web.UI.WebControls.Button btnAccept;
 
         /// <summary>
-        /// vOffer control.
+        /// btnDecline control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PhillyPhreshProperties.ViewOffers vOffer;
-
-        /// <summary>
-        /// btnExit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExit;
+        protected global::System.Web.UI.WebControls.Button btnDecline;
     }
 }

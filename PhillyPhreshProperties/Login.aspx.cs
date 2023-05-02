@@ -44,12 +44,10 @@ namespace PhillyPhreshProperties
                     type = user.AccountType;
 
                     formatter.Serialize(stream, email);
-                    byte[] emailData = stream.ToArray();
-                    Session["Email"] = emailData;
-
                     formatter.Serialize(stream, type);
-                    byte[] typeData = stream.ToArray();
-                    Session["AccountType"] = typeData;
+
+                    byte[] emailData = stream.ToArray();
+                    Session["User"] = emailData;
 
                     if (chkSaveLoginInfo.Checked)
                     {
@@ -59,7 +57,7 @@ namespace PhillyPhreshProperties
 
                     if(user.AccountType == "Buyer")
                     {
-                        Response.Redirect("SearchForHomes.aspx");
+                        Response.Redirect("Showings-Buyer.aspx");
                     }
                     else if(user.AccountType == "Agent" || user.AccountType == "Seller")
                     {

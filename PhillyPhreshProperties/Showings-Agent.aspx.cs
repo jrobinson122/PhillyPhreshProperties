@@ -18,6 +18,7 @@ namespace PhillyPhreshProperties
         string type;
         BinaryFormatter formatter = new BinaryFormatter();
         MemoryStream stream = new MemoryStream();
+        Offer homeOffer = new Offer();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -41,6 +42,28 @@ namespace PhillyPhreshProperties
 
         }
 
-        
-    }
+        protected void rptShowings_ItemCommand(Object sender, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Offer")
+            {
+                int row = e.Item.ItemIndex;
+
+                Label address = (Label)rptShowings.Items[row].FindControl("lblProperty");
+                Label buyer = (Label)rptShowings.Items[row].FindControl("lblBuyer");
+
+                homeOffer = procedure.GetOffer(buyer.Text, address.Text);
+                ViewOffers view = (ViewOffers)LoadControl("ViewOffers.ascx");
+
+                if(homeOffer != null)
+                {
+                    view.FillLabels(homeOffer.Buyer, homeOffer.Agent, homeOffer.Address, homeOffer.City, homeOffer.AskingPrice, homeOffer.HomeOffer);
+                    Form.Controls.Add(view);
+
+                    divOffer.Visible = true;
+                }
+                
+
+            }
+
+        }
 }

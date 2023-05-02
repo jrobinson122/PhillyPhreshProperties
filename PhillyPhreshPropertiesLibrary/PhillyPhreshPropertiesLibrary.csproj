@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Home.cs" />
+    <Compile Include="Offer.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Showings.cs" />
     <Compile Include="StoredProcedures.cs" />

@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Showings-Agent.aspx.cs" Inherits="PhillyPhreshProperties.Showings_Agent" %>
 
+<%@ Register Src="~/ViewOffers.ascx" TagName="ViewOffer" TagPrefix="uc1" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,11 +50,18 @@
                                 <td>
                                     <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%# DataBinder.Eval(Container.DataItem, "Time")%>' />
                                 </td>
+                                <td>
+                                    <asp:Button ID="btnOffer" runat="server" Text="View Offer" CssClass="btn btn-outline-info" CommandName="Offer" />
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </table>
             </div><%--end showings div--%>
+
+            <div id="divOffer" class="flex-column d-flex justify-content-center w-75 mx-auto" runat="server" style="display:none;">
+                <uc1:ViewOffer ID="vOffer" runat="server"/>
+            </div><%--end divOffers--%>
 
             <div class="row my-1 justify-content-center">
                 <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-25" Text="Exit"/>

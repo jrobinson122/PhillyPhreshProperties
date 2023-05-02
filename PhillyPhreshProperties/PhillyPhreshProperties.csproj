@@ -89,6 +89,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\DashboardSrvc\Dashboard.disco" />
+    <Content Include="ViewOffers.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,13 @@
     </Compile>
     <Compile Include="SearchForHomes.aspx.designer.cs">
       <DependentUpon>SearchForHomes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOffers.ascx.cs">
+      <DependentUpon>ViewOffers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewOffers.ascx.designer.cs">
+      <DependentUpon>ViewOffers.ascx</DependentUpon>
     </Compile>
     <Compile Include="Web References\DashboardSrvc\Reference.cs">
       <AutoGen>True</AutoGen>

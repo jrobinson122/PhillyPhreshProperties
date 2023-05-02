@@ -46,7 +46,7 @@
                         <asp:BoundField DataField="PriceComment" HeaderText="Pricing"/>
                         <asp:BoundField DataField="LocationComment" HeaderText="Location"/>
                         <asp:BoundField DataField="HomeComment" HeaderText="House"/>
-                        <asp:BoundField DataField="Rating" HeaderText="Rating"/>
+                        <asp:BoundField DataField="AverageRating" HeaderText="Rating"/>
                     </Columns>
                 </asp:GridView>
 

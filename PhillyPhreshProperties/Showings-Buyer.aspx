@@ -45,14 +45,14 @@
 
 
             <div id="scheduling" class="flex-column d-flex justify-content-center align-items-center w-75 mx-auto">
-                <div class="row gx-3 my-1 ">
+                <div class="row gx-3 my-1">
                     <div class="col-md-6">
                         <asp:Label ID="lblAddress" runat="server" CssClass="col-form-label" Text="Address: "/>
-                        <asp:Textbox ID="txtAddress" runat="server" CssClass="col-form-label" />
+                        <asp:Textbox ID="txtAddress" runat="server" CssClass="col-form-control" />
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblCity" runat="server" CssClass="col-form-label" Text="City: "/>
-                        <asp:Textbox ID="txtCity" runat="server" CssClass="col-form-label" />
+                        <asp:Textbox ID="txtCity" runat="server" CssClass="col-form-control" />
                     </div>
                 </div>
                 <div class="row my-1 ">
@@ -82,8 +82,7 @@
                 </div>
                 
                 <asp:Button ID="btnSchedule" runat="server" Text="Schedule" CssClass="btn btn-info align-content-center" OnClick="btnSchedule_Click" />
-                <asp:Label ID="lblError" runat="server" Visible="false" CssClass="my-2 text-warning align-content-center"/>
-
+                
             </div><%--end scheduling div--%>
 
             <asp:ScriptManager ID="scrmShwoings" runat="server"></asp:ScriptManager>
@@ -94,34 +93,77 @@
 
                 <asp:UpdatePanel ID="udpShowings" runat="server">
                     <ContentTemplate>
-                        <asp:Repeater ID="rptShowings" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                <td>
-                                    <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Agent")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Address")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Date")%>' />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Time")%>' />
-                                </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                        <table>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <asp:Repeater ID="rptShowings" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="lblAgent" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Agent")%>' />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblProperty" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Address")%>' />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblRCity" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"City")%>' />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Date")%>' />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblTime" runat="server" CssClass="form-label" Text='<%#  DataBinder.Eval(Container.DataItem,"Time")%>' />
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btnOffer" runat="server" Text="Make Offer" CssClass="btn btn-outline-info" CommandName="Offer" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                        
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
             </div><%--end showings div--%>
+            
+            <div id="divOffer" class="flex-column d-flex justify-content-center w-75 mx-auto" runat="server" style="display:none;">
+                <div class="row my-1 ">
+                    <asp:Image ID="imgPhoto" runat="server" Height="200px" Width="200px" ImageUrl= "" />
+                </div>
+                <div class="row my-1">
+                    <asp:Label ID="lblOfferAddress" runat="server" CssClass="form-label" />
+                </div>
+                <div class="row my-1">
+                    <asp:Label ID="lblOfferCity" runat="server" CssClass="form-label" />
+                </div>
+                <div class="row my-1">
+                    <asp:Label ID="lblStatus" runat="server" CssClass="form-label" />
+                </div>
+                <div class="row my-1">
+                    <asp:Label ID="lblAskingPrice" runat="server" CssClass="form-label" />
+                </div>
+                <div class="row my-1">
+                    <asp:Label ID="lblOffer" runat="server" CssClass="form-label" />
+                    <asp:TextBox ID="txtOffer" runat="server" CssClass="form-control" />
+                </div>
+                <div class="row my-1">
+                    <asp:Button ID="btnOffer" runat="server" CssClass="btn btn-outline-info" Text="Make Offer" OnClick="btnOffer_Click" />
+                </div>
+            </div><%--end divOffer--%>
 
             <div class="row my-1 justify-content-center">
+                <asp:Label ID="lblError" runat="server" Visible="false" CssClass="my-2 text-warning align-content-center"/>
+                <br />
                 <asp:Button ID="btnExit" runat="server" CssClass="btn btn-outline-info w-25" Text="Exit" OnClick="btnExit_Click"/>
-            </div>                
+            </div>
 
-        </div>
+        </div><%--end main div--%>
     </form>
 </body>
 </html>

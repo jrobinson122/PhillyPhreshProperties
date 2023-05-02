@@ -20,6 +20,7 @@ namespace PhillyPhreshPropertiesLibrary
         string garage;
         string homeDescription;
         decimal askingPrice;
+        string status;
 
         public Home()
         {
@@ -87,6 +88,12 @@ namespace PhillyPhreshPropertiesLibrary
         {
             get { return askingPrice; }
             set { askingPrice = value; }
+        }
+
+        public string Status
+        {
+            get { return status; }
+            set { status = value; }
         }
 
 
